@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="1_add_category.xml" relativeToChangelogFile="true"/>
+    <include file="2_add_file_access.xml" relativeToChangelogFile="true"/>
+    <include file="3_add_file.xml" relativeToChangelogFile="true"/>
+    <include file="4_add_file_session.xml" relativeToChangelogFile="true"/>
+    <include file="5_add_folder.xml" relativeToChangelogFile="true"/>
+    <include file="6_add_user_record.xml" relativeToChangelogFile="true"/>
+    <include file="7_add_file_access_descriptor.xml" relativeToChangelogFile="true"/>
+    <include file="8_add_file_extension.xml" relativeToChangelogFile="true"/>
+    <include file="9_add_file_sys_index_state.xml" relativeToChangelogFile="true"/>
+    <include file="10_add_file_sys_index.xml" relativeToChangelogFile="true"/>
+    <include file="11_add_file_sys_index_service_status.xml" relativeToChangelogFile="true"/>
+    <include file="12_add_table_relations.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

@@ -1,0 +1,4 @@
+﻿ID,CODE,INFO
+1,NONE,The access is forbidden
+2,READER,The access of reading
+3,INFO_WRITER,The access of writing additional info

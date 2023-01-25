@@ -1,0 +1,208 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <!--File access relations-->
+    <changeSet id="add_file_access_file_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_access" columnName="file_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_access_file_id_fk"
+                baseTableName="file_access"
+                baseColumnNames="file_id"
+                referencedTableName="file"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="add_file_access_file_access_descriptor_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_access" columnName="file_access_descriptor_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_access_descriptor_id_fk"
+                baseTableName="file_access"
+                baseColumnNames="file_access_descriptor_id"
+                referencedTableName="file_access_descriptor"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="add_file_access_user_record_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_access" columnName="user_record_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_access_user_record_fk"
+                baseTableName="file_access"
+                baseColumnNames="user_record_id"
+                referencedTableName="user_record"
+                referencedColumnNames="id"/>
+    </changeSet>
+    <!-- (File access relations) -->
+
+
+    <!--File relations-->
+    <changeSet id="add_file_category_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file" columnName="category_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_category_id_fk"
+                baseTableName="file"
+                baseColumnNames="category_id"
+                referencedTableName="category"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+
+    <changeSet id="add_file_folder_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file" columnName="folder_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_folder_id_fk"
+                baseTableName="file"
+                baseColumnNames="folder_id"
+                referencedTableName="folder"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+
+    <changeSet id="add_file_file_extension_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file" columnName="file_extension_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_file_extension_id_fk"
+                baseTableName="file"
+                baseColumnNames="file_extension_id"
+                referencedTableName="file_extension"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+
+    <changeSet id="add_file_file_sys_index_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file" columnName="file_sys_index_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_file_sys_index_fk"
+                baseTableName="file"
+                baseColumnNames="file_sys_index_id"
+                referencedTableName="file_sys_index"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <!-- (File relations) -->
+
+    <!--File session relations-->
+    <changeSet id="add_file_session_user_record_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_session" columnName="user_record_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_session_user_record_fk"
+                baseTableName="file_session"
+                baseColumnNames="user_record_id"
+                referencedTableName="user_record"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <changeSet id="add_file_session_file_sys_index_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_session" columnName="file_sys_index_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_session_file_sys_index_fk"
+                baseTableName="file_session"
+                baseColumnNames="file_sys_index_id"
+                referencedTableName="file_sys_index"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <!-- (File session relations) -->
+
+    <!--Folder relations-->
+    <changeSet id="add_folder_category_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="folder" columnName="category_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="folder_category_fk"
+                baseTableName="folder"
+                baseColumnNames="category_id"
+                referencedTableName="category"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <changeSet id="add_folder_folder_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="folder" columnName="parent_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="folder_folder_fk"
+                baseTableName="folder"
+                baseColumnNames="parent_id"
+                referencedTableName="folder"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <changeSet id="add_folder_file_sys_index_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="folder" columnName="file_sys_index_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="folder_file_sys_index_fk"
+                baseTableName="folder"
+                baseColumnNames="file_sys_index_id"
+                referencedTableName="file_sys_index"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <!-- (Folder relations) -->
+
+    <!--File system index relations-->
+    <changeSet id="add_file_sys_index_file_sys_index_state_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_sys_index" columnName="file_sys_index_state_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_sys_index_file_sys_index_state_fk"
+                baseTableName="file_sys_index"
+                baseColumnNames="file_sys_index_state_id"
+                referencedTableName="file_sys_index_state"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <changeSet id="add_file_sys_index_file_sys_index_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_sys_index" columnName="prev_file_sys_index_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_sys_index_file_sys_index_fk"
+                baseTableName="file_sys_index"
+                baseColumnNames="prev_file_sys_index_id"
+                referencedTableName="file_sys_index"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <!-- (File system service log relations) -->
+
+    <!-- File system index service status -->
+    <changeSet id="add_file_sys_index_service_status_file_sys_index_service_status_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="file_sys_index_service_status" columnName="prev_file_sys_index_service_status_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="file_sys_index_service_status_file_sys_index_service_status_fk"
+                baseTableName="file_sys_index_service_status"
+                baseColumnNames="prev_file_sys_index_service_status_id"
+                referencedTableName="file_sys_index_service_status"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <!-- (File system index service status) -->
+
+</databaseChangeLog>

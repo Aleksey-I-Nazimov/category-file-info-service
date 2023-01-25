@@ -1,0 +1,25 @@
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    #database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  # see: https://jdbc.postgresql.org/documentation/ssl/
+  datasource.url: jdbc:postgresql://localhost:5432/cfis?ApplicationName=cfis&ssl=true&sslmode=disable&client_encoding=UTF8
+  datasource.driver-class-name: org.postgresql.Driver
+  datasource.username: cfis_user
+  datasource.password: cfis_password
+
+  liquibase:
+    enabled: true
+    drop-first: true
+    change-log: classpath:category_file_info_service_changelog.xml
+    default-schema: public
+
+app:
+  category-file-root: /
+  category-file-name: -|||categories|||-
+  user-access-file-name: ->>>access-file-name<<<-
+  user-session-expiration-timeout: 600000

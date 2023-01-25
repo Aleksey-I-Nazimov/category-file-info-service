@@ -1,0 +1,37 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="Nazimov Aleksey I." id="add-file-access">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="file_access"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="file_access" remarks="The table of user file access">
+
+            <column name="id" type="NUMBER" remarks="The numerical primary key">
+                <constraints primaryKey="true" primaryKeyName="file_access_id_pk"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="The time of creating">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
+
+
+            <column name="file_id" type="NUMBER" remarks="The file ID foreign key">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_access_descriptor_id" type="NUMBER" remarks="The file access descriptor ID foreign key">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_record_id" type="NUMBER" remarks="The user record foreign key">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

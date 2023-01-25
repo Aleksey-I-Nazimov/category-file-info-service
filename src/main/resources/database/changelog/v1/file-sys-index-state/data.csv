@@ -1,0 +1,4 @@
+﻿ID,CODE,INFO
+1,REQUESTED,The current index was requested to be applied
+2,APPLIED,The current index was applied and used as the main actual index
+3,ARCHIVED,The index was applied but it was archived

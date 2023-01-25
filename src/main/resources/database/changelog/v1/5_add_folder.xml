@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="Nazimov Aleksey I." id="add-folder">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="folder"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="folder" remarks="The table of parsed file system folders">
+
+            <column name="id" type="NUMBER" remarks="The numerical primary key">
+                <constraints primaryKey="true" primaryKeyName="folder_id_pk"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="The time of creating">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
+
+            <column name="name" type="VARCHAR(1024)" remarks="The folder name">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="category_id" type="NUMBER" remarks="The category foreign key ID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="NUMBER" remarks="The folder parent foreign key ID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_sys_index_id" type="NUMBER" remarks="The file system index foreign key ID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
