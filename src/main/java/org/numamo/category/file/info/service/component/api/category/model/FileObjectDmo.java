@@ -3,7 +3,6 @@ package org.numamo.category.file.info.service.component.api.category.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import static java.util.Collections.reverse;
 import static java.util.Collections.unmodifiableList;
@@ -23,10 +22,10 @@ public final class FileObjectDmo {
     public static final String EXTENSION_SEPARATOR_REGEXP = "\\.";
 
     private final String name;
-    private final List<UserAccessDmo> userAccessList=new ArrayList<> ();
+    private final List<UserAccessDmo> userAccessList = new ArrayList<>();
 
     private final FileObjectDmo parent;
-    private final List<FileObjectDmo> childList=new ArrayList<>();
+    private final List<FileObjectDmo> childList = new ArrayList<>();
     private final long byteSize;
 
     public FileObjectDmo(
@@ -66,40 +65,45 @@ public final class FileObjectDmo {
         return childList;
     }
 
-    public boolean isFile () {
-        return childList.isEmpty() && byteSize>=0;
+    public boolean isFile() {
+        return childList.isEmpty() && byteSize >= 0;
     }
 
-    public String getExtension () {
+    public String getExtension() {
         if (isFile()) {
             try {
-                return this.name.split(EXTENSION_SEPARATOR_REGEXP)[1];
+                final String[] fileNameParts = this.name.split(EXTENSION_SEPARATOR_REGEXP);
+                if (fileNameParts.length > 1) {
+                    return fileNameParts[fileNameParts.length - 1];
+                } else {
+                    throw new IllegalArgumentException("The file name has no extensions " + this.name);
+                }
             } catch (Exception e) {
-                throw new IllegalStateException("Extracting file extension was failed: cause->",e);
+                throw new IllegalStateException("Extracting file extension was failed: cause->", e);
             }
         } else {
             throw new IllegalStateException("This file object has no extensions");
         }
     }
 
-    public List<String> getAllExtensions () {
+    public List<String> getAllExtensions() {
         final List<String> extensions = new ArrayList<>();
         if (isFile()) {
             extensions.add(getExtension());
         } else {
-            getChildList().forEach(child->extensions.addAll(child.getAllExtensions()));
+            getChildList().forEach(child -> extensions.addAll(child.getAllExtensions()));
         }
         return extensions;
     }
 
-    public List<UserAccessDmo> getAllUsers () {
+    public List<UserAccessDmo> getAllUsers() {
         final List<UserAccessDmo> accessList = new ArrayList<>(getUserAccessList());
-        getChildList().forEach(child->accessList.addAll(child.getAllUsers()));
+        getChildList().forEach(child -> accessList.addAll(child.getAllUsers()));
         return unmodifiableList(accessList);
     }
 
-    public List<String> getFullPathElements () {
-        final List<String> pathElements = new ArrayList<> ();
+    public List<String> getFullPathElements() {
+        final List<String> pathElements = new ArrayList<>();
         pathElements.add(getName());
         for (FileObjectDmo parent = this.getParent(); nonNull(parent); parent = parent.getParent()) {
             pathElements.add(parent.getName());
@@ -108,11 +112,11 @@ public final class FileObjectDmo {
         return unmodifiableList(pathElements);
     }
 
-    public String getFullPath () {
+    public String getFullPath() {
         final List<String> pathElements = getFullPathElements();
         final StringBuilder pathBuilder = new StringBuilder(DEFAULT_FILE_SEPARATOR);
         final Iterator<String> pathElementsIterator = pathElements.iterator();
-        while(true) {
+        while (true) {
             pathBuilder.append(pathElementsIterator.next());
             if (pathElementsIterator.hasNext()) {
                 pathBuilder.append(DEFAULT_FILE_SEPARATOR);
@@ -123,12 +127,12 @@ public final class FileObjectDmo {
         return pathBuilder.toString();
     }
 
-    public long getByteSize () {
-        long cnt[]={0L};
+    public long getByteSize() {
+        long cnt[] = {0L};
         if (isFile()) {
-            cnt[0]=byteSize;
+            cnt[0] = byteSize;
         } else {
-            getChildList().forEach(child-> cnt[0]+=child.getByteSize());
+            getChildList().forEach(child -> cnt[0] += child.getByteSize());
         }
         return cnt[0];
     }

@@ -3,6 +3,7 @@ package org.numamo.category.file.info.service.repository.entity;
 
 import org.numamo.category.file.info.service.repository.entity.basics.BasicEntity;
 import org.numamo.category.file.info.service.repository.entity.dictionary.FileAccessDescriptorEntity;
+import org.numamo.category.file.info.service.repository.entity.user.UserRecordEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -11,20 +12,20 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="file_access")
+@Table(name = "file_access")
 public final class FileAccessEntity extends BasicEntity {
 
 
     @ManyToOne
-    @JoinColumn(name="file_id",nullable=false)
+    @JoinColumn(name = "file_id", nullable = false)
     private FileEntity file;
 
     @ManyToOne
-    @JoinColumn(name="file_access_descriptor_id",nullable=false)
+    @JoinColumn(name = "file_access_descriptor_id", nullable = false)
     private FileAccessDescriptorEntity fileAccessDescriptor;
 
     @ManyToOne
-    @JoinColumn(name="user_record_id",nullable=false)
+    @JoinColumn(name = "user_record_id", nullable = false)
     private UserRecordEntity userRecord;
 
 

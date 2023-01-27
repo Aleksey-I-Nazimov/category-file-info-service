@@ -3,8 +3,8 @@ package org.numamo.category.file.info.service.component.api.main.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.numamo.category.file.info.service.repository.entity.FileSessionEntity;
-import org.numamo.category.file.info.service.repository.entity.UserRecordEntity;
 import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
+import org.numamo.category.file.info.service.repository.entity.user.UserRecordEntity;
 
 
 @Mapper(componentModel = "spring")
@@ -22,17 +22,5 @@ public interface UserSessionMapper {
             UserRecordEntity userRecord,
             FileSysIndexEntity fileSysIndex
     );
-
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "login", source = "login")
-    @Mapping(target = "code", source = "code")
-    UserRecordEntity makeNewUserRecord(
-            long id,
-            String login,
-            String code
-    );
-
 
 }

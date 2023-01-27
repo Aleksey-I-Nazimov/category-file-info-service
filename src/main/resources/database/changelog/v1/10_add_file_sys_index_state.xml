@@ -3,44 +3,42 @@
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet author="Nazimov Aleksey I." id="add-file-access-descriptor">
+    <changeSet author="Nazimov Aleksey I." id="add-file-sys-index-state">
 
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="file_access_descriptor"/>
+                <tableExists tableName="file_sys_index_state"/>
             </not>
         </preConditions>
 
-        <createTable tableName="file_access_descriptor" remarks="The table of file access dictionaries">
+        <createTable tableName="file_sys_index_state" remarks="The table of file system index state dictionaries">
 
             <column name="id" type="NUMBER" remarks="The numerical primary key">
-                <constraints primaryKey="true" primaryKeyName="file_access_descriptor_id_pk"/>
+                <constraints primaryKey="true" primaryKeyName="file_sys_index_state_id_pk"/>
             </column>
             <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"
-                    remarks="The time of creating">
-                <constraints nullable="true"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
+                    remarks="The time of creating"/>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of updating"/>
 
-            <column name="code" type="VARCHAR(24)" remarks="The access code">
+            <column name="code" type="VARCHAR(24)" remarks="The index state code">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="info" type="VARCHAR(128)" remarks="The access info">
+            <column name="info" type="VARCHAR(128)" remarks="The index state info">
                 <constraints nullable="false"/>
             </column>
 
         </createTable>
     </changeSet>
 
-    <changeSet id="insert-file-access-descriptor" author="Nazimov Aleksey I.">
+    <changeSet id="insert-file-sys-index-state" author="Nazimov Aleksey I.">
         <preConditions onFail="MARK_RAN">
-            <tableExists tableName="file_access_descriptor"/>
+            <tableExists tableName="file_sys_index_state"/>
         </preConditions>
         <loadUpdateData
-                tableName="file_access_descriptor"
+                tableName="file_sys_index_state"
                 primaryKey="id"
-                file="database/changelog/v1/file-access-descriptor/data.csv"/>
+                file="database/changelog/v1/file-sys-index-state/data.csv"/>
     </changeSet>
-
 
 </databaseChangeLog>

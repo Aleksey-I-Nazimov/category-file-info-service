@@ -163,6 +163,21 @@
     </changeSet>
     <!-- (Folder relations) -->
 
+    <!-- User relations: -->
+    <changeSet id="add_user_info_user_record_fk" author="Nazimov Aleksey I">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="user_info" columnName="user_record_id"/>
+        </preConditions>
+        <addForeignKeyConstraint
+                constraintName="user_info_user_record_fk"
+                baseTableName="user_info"
+                baseColumnNames="user_record_id"
+                referencedTableName="user_record"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+    <!-- (User relations) -->
+
     <!--File system index relations-->
     <changeSet id="add_file_sys_index_file_sys_index_state_fk" author="Nazimov Aleksey I">
         <preConditions onFail="MARK_RAN">

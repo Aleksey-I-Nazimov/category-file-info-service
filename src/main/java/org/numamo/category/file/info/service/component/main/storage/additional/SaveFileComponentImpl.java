@@ -3,8 +3,8 @@ package org.numamo.category.file.info.service.component.main.storage.additional;
 import org.numamo.category.file.info.service.component.api.category.model.FileObjectDmo;
 import org.numamo.category.file.info.service.component.api.main.mapper.FileRepoMapper;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.FileAccessComponent;
-import org.numamo.category.file.info.service.component.api.main.storage.additional.SaveFileComponent;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.IdGenerator;
+import org.numamo.category.file.info.service.component.api.main.storage.additional.SaveFileComponent;
 import org.numamo.category.file.info.service.repository.api.FileRepository;
 import org.numamo.category.file.info.service.repository.api.FolderRepository;
 import org.numamo.category.file.info.service.repository.api.dictionary.FileExtensionRepository;
@@ -15,8 +15,7 @@ import org.numamo.category.file.info.service.repository.entity.index.FileSysInde
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -55,16 +54,15 @@ public class SaveFileComponentImpl implements SaveFileComponent {
 
     // Public API:-----------------------------------------------------------------------
     @Override
-    @Transactional(Transactional.TxType.SUPPORTS)
+    @Transactional
     public void saveCategoryFilesAndFolders(
             final FileObjectDmo fileObjectDmo,
             final CategoryEntity mainCategory,
             final FileSysIndexEntity fileSysIndex
     ) {
-        LOGGER.trace("Requesting for storing the file object {}",fileObjectDmo);
-        saveCategoryFilesAndFolders(fileObjectDmo,null,mainCategory,fileSysIndex);
+        LOGGER.trace("Requesting for storing the file object {}", fileObjectDmo);
+        saveCategoryFilesAndFolders(fileObjectDmo, null, mainCategory, fileSysIndex);
     }
-
 
 
     // Internal methods:-----------------------------------------------------------------
@@ -98,8 +96,8 @@ public class SaveFileComponentImpl implements SaveFileComponent {
                 fileObjectDmo.getByteSize(),
                 mainCategory,
                 parentFolder,
-                fileExtensionRepository.findByCode(fileObjectDmo.getExtension()).orElseThrow(
-                        () -> new IllegalArgumentException("File extension is not found by " + fileObjectDmo.getExtension())),
+                fileExtensionRepository.findByCode(fileObjectDmo.getExtension().toLowerCase()).orElseThrow(
+                        () -> new IllegalArgumentException("File extension is not found by: " + fileObjectDmo.getExtension() + " " + fileObjectDmo.getFullPath())),
                 fileSysIndex);
         fileEntity.setFileAccessList(fileAccessComponent.makeAccessEntity(fileObjectDmo, fileEntity));
         LOGGER.trace("The following file was constructed: {}", fileEntity);

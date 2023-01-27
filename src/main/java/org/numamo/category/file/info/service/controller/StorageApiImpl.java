@@ -26,7 +26,7 @@ public class StorageApiImpl implements StorageApi {
     public FileStorageUpdaterDto makeUpdates() {
         LOGGER.info("Request for making updates!");
         final FileStorageUpdaterDto updater = storageUpdateStrategy.execute();
-        LOGGER.info("Request for making updates was completed: {}",updater);
+        LOGGER.info("Request for making updates was completed: {}", updater);
         return updater;
     }
 

@@ -35,17 +35,17 @@ public class FileSysIndexServiceStatusComponentImpl implements FileSysIndexServi
     }
 
     @Override
-    @Transactional(propagation=MANDATORY,isolation=READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public void changeStatus(
             final boolean enabled
     ) {
         final FileSysIndexServiceStatusEntity newStatus = makeNewStatus(enabled);
         statusRepository.save(newStatus);
-        LOGGER.debug("The new status was saved: {}",newStatus);
+        LOGGER.debug("The new status was saved: {}", newStatus);
     }
 
     @Override
-    @Transactional(propagation=MANDATORY,isolation=READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public FileSysIndexServiceStatusEntity readActualStatus() {
         return readStatus();
     }
@@ -58,12 +58,12 @@ public class FileSysIndexServiceStatusComponentImpl implements FileSysIndexServi
                 .findAny()
                 .orElseGet(this::makeAndSaveInitialStatus);
 
-        LOGGER.info("Read actual status: {}",existedStatus);
+        LOGGER.info("Read actual status: {}", existedStatus);
 
         return existedStatus;
     }
 
-    private FileSysIndexServiceStatusEntity makeNewStatus (final boolean enabled) {
+    private FileSysIndexServiceStatusEntity makeNewStatus(final boolean enabled) {
 
         final FileSysIndexServiceStatusEntity existedStatus = readStatus();
 
@@ -76,11 +76,11 @@ public class FileSysIndexServiceStatusComponentImpl implements FileSysIndexServi
 
         /* Obvious closing the previous status */
         existedStatus.setActual(false);
-        existedStatus.setInfo(existedStatus.getInfo()+" was closed by "+getThreadInfo());
+        existedStatus.setInfo(existedStatus.getInfo() + " was closed by " + getThreadInfo());
         return newStatus;
     }
 
-    private FileSysIndexServiceStatusEntity makeAndSaveInitialStatus () {
+    private FileSysIndexServiceStatusEntity makeAndSaveInitialStatus() {
         final FileSysIndexServiceStatusEntity status = new FileSysIndexServiceStatusEntity();
         status.setId(idGenerator.nextId());
         status.setInfo("The initial sys index status entity: " + getThreadInfo());

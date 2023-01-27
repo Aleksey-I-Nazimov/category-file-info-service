@@ -26,12 +26,12 @@ public final class MetadataFileReaderImpl implements MetadataFileReader {
     public List<CodeDmo> readCategories(File categoryFile) {
         try {
             final List<CodeDmo> categories = Stream
-                    .of(mapper.readValue(categoryFile,CodeDmo[].class))
+                    .of(mapper.readValue(categoryFile, CodeDmo[].class))
                     .collect(toList());
-            LOGGER.debug("Read category codes: {} from {}",categories,categoryFile);
+            LOGGER.debug("Read category codes: {} from {}", categories, categoryFile);
             return categories;
         } catch (Exception e) {
-            throw new IllegalStateException("The input category metadata file cannot be read: "+categoryFile);
+            throw new IllegalStateException("The input category metadata file cannot be read: " + categoryFile, e);
         }
     }
 
@@ -41,10 +41,10 @@ public final class MetadataFileReaderImpl implements MetadataFileReader {
             final List<UserAccessDmo> accessList = Stream
                     .of(mapper.readValue(accessFile, UserAccessDmo[].class))
                     .collect(toList());
-            LOGGER.debug("Read user access list: {} from {}",accessList,accessFile);
+            LOGGER.debug("Read user access list: {} from {}", accessList, accessFile);
             return accessList;
         } catch (Exception e) {
-            throw new IllegalArgumentException("The input access metadata file cannot be read: "+accessFile);
+            throw new IllegalArgumentException("The input access metadata file cannot be read: " + accessFile);
         }
     }
 }

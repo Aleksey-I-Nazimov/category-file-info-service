@@ -2,26 +2,26 @@ package org.numamo.category.file.info.service.repository.entity.basics;
 
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.MappedSuperclass;
 import java.time.Instant;
 import java.util.Objects;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
 
-@Entity
+@MappedSuperclass
 @Inheritance(strategy = TABLE_PER_CLASS)
 public abstract class BasicEntity {
 
     @Id
     protected long id;
 
-    @Column(name="created_at",nullable = false)
+    @Column(name = "created_at")
     protected Instant createdAt;
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
     protected Instant updatedAt;
 
     public long getId() {

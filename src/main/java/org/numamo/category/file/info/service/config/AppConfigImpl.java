@@ -14,7 +14,6 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Configuration
 public class AppConfigImpl implements AppConfig {
 
-
     private static final Logger LOGGER = getLogger(AppConfigImpl.class);
 
     private String categoryFileRoot;
@@ -22,9 +21,13 @@ public class AppConfigImpl implements AppConfig {
     private String userAccessFileName;
     private long userSessionExpirationTimeout;
 
+    private String defaultUserLogin;
+    private String defaultUserPassword;
+
+
     @PostConstruct
-    void postConstruct () {
-        LOGGER.info("The app config was set as: {}",this);
+    void postConstruct() {
+        LOGGER.info("The app config was set as: {}", this);
     }
 
     @Override
@@ -33,7 +36,7 @@ public class AppConfigImpl implements AppConfig {
     }
 
     @Value("${app.category-file-root}")
-    void setCategoryFileRoot (String categoryFileRoot) {
+    void setCategoryFileRoot(String categoryFileRoot) {
         this.categoryFileRoot = requireNonNull(categoryFileRoot);
     }
 
@@ -67,6 +70,26 @@ public class AppConfigImpl implements AppConfig {
         this.userSessionExpirationTimeout = userSessionExpirationTimeout;
     }
 
+    @Value("${app.default-user-login:admin}")
+    public void setDefaultUserLogin(String defaultUserLogin) {
+        this.defaultUserLogin = defaultUserLogin;
+    }
+
+    @Override
+    public String getDefaultUserLogin() {
+        return defaultUserLogin;
+    }
+
+    @Value("${app.default-user-password:admin}")
+    public void setDefaultUserPassword(String defaultUserPassword) {
+        this.defaultUserPassword = defaultUserPassword;
+    }
+
+    @Override
+    public String getDefaultUserPassword() {
+        return defaultUserPassword;
+    }
+
     @Override
     public String toString() {
         return "AppConfigImpl{" +
@@ -74,6 +97,8 @@ public class AppConfigImpl implements AppConfig {
                 ", categoryFileName='" + categoryFileName + '\'' +
                 ", userAccessFileName='" + userAccessFileName + '\'' +
                 ", userSessionExpirationTimeout=" + userSessionExpirationTimeout +
+                ", defaultUserLogin='" + defaultUserLogin + '\'' +
+                ", defaultUserPassword='" + defaultUserPassword + '\'' +
                 '}';
     }
 }

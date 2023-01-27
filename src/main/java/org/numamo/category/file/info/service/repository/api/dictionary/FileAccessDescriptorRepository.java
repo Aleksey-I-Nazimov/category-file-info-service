@@ -8,7 +8,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface FileAccessDescriptorRepository extends CrudRepository<FileAccessDescriptorEntity,Long> {
+public interface FileAccessDescriptorRepository extends CrudRepository<FileAccessDescriptorEntity, Long> {
 
     Optional<FileAccessDescriptorEntity> findByCode(String code);
 

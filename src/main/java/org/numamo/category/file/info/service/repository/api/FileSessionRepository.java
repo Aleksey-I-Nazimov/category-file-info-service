@@ -10,9 +10,9 @@ import java.util.Optional;
 
 
 @Repository
-public interface FileSessionRepository extends CrudRepository<FileSessionEntity,Long> {
+public interface FileSessionRepository extends CrudRepository<FileSessionEntity, Long> {
 
-    Optional<FileSessionEntity> findByIdAndActive(Long id,Boolean active);
+    Optional<FileSessionEntity> findByIdAndActive(Long id, Boolean active);
 
     List<FileSessionEntity> findAllByActiveAndFileSysIndex(Boolean active, FileSysIndexEntity fileSysIndex);
 

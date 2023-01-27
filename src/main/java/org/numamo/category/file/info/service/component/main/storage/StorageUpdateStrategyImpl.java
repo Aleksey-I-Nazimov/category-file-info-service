@@ -7,21 +7,15 @@ import org.numamo.category.file.info.service.component.api.main.storage.StorageU
 import org.numamo.category.file.info.service.component.api.main.storage.StorageUpdater;
 import org.numamo.category.file.info.service.controller.dto.FileStorageUpdaterDto;
 import org.numamo.category.file.info.service.controller.dto.FileStorageUpdaterStateDto;
-import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.util.Optional;
 
 import static java.time.Instant.now;
-import static java.util.Objects.nonNull;
 import static org.numamo.category.file.info.service.controller.dto.FileStorageUpdaterStateDto.*;
 import static org.slf4j.LoggerFactory.getLogger;
-import static org.springframework.transaction.annotation.Isolation.READ_COMMITTED;
-import static org.springframework.transaction.annotation.Isolation.SERIALIZABLE;
 
 
 @Component
@@ -49,25 +43,29 @@ public class StorageUpdateStrategyImpl implements StorageUpdateStrategy {
 
     @Override
     public FileStorageUpdaterDto execute() {
-            final boolean activeSession = userSessionManager.hasActiveUserSessions();
-
-            if (!activeSession) {
-                final Optional<Long> idOpt = fileSysIndexComponent.getRequestedFileSysIndex();
-                if (idOpt.isPresent()) {
-                    final long id = idOpt.get();
+        if (!userSessionManager.hasActiveUserSessions()) {
+            final Optional<Long> idOpt = fileSysIndexComponent.getRequestedFileSysIndex();
+            if (idOpt.isPresent()) {
+                final long id = idOpt.get();
+                try {
                     storageCleaner.cleanPrevRecords();
                     storageUpdater.update(id);
-                    fileSysIndexComponent.finalizeRequestedIndex(id);
-                    LOGGER.debug("Successfully updated storage by ID={}",id);
-                    return make(EXECUTED);
-                } else {
-                    LOGGER.warn("Storage updating has already been started!");
-                    return make(EXECUTING);
+                } catch (Exception e) {
+                    LOGGER.error("Storage update error:", e);
+                    fileSysIndexComponent.removeRequestedIndex(id);
+                    return make(FAILED);
                 }
+                fileSysIndexComponent.finalizeRequestedIndex(id);
+                LOGGER.debug("Successfully updated storage by ID={}", id);
+                return make(EXECUTED);
             } else {
-                LOGGER.warn("There are some active user sessions. Let's wait!");
-                return make(BLOCK_BY_USER);
+                LOGGER.warn("Storage updating has already been started!");
+                return make(EXECUTING);
             }
+        } else {
+            LOGGER.warn("There are some active user sessions. Let's wait!");
+            return make(BLOCK_BY_USER);
+        }
     }
 
     private FileStorageUpdaterDto make(

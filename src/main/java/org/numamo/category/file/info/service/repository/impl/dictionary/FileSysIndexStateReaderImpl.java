@@ -17,7 +17,7 @@ public final class FileSysIndexStateReaderImpl implements FileSysIndexStateReade
     public static final String APPLIED = "APPLIED";
     public static final String ARCHIVED = "ARCHIVED";
 
-    private static final Logger LOGGER  = getLogger(FileSysIndexStateReaderImpl.class);
+    private static final Logger LOGGER = getLogger(FileSysIndexStateReaderImpl.class);
 
     private final FileSysIndexStateRepository fileSysIndexStateRepository;
 
@@ -29,26 +29,26 @@ public final class FileSysIndexStateReaderImpl implements FileSysIndexStateReade
 
     @Override
     public FileSysIndexStateEntity findRequestedState() {
-        final FileSysIndexStateEntity state = fileSysIndexStateRepository.findByCode(REQUESTED).orElseThrow(()->
+        final FileSysIndexStateEntity state = fileSysIndexStateRepository.findByCode(REQUESTED).orElseThrow(() ->
                 new IllegalStateException("Cannot find REQUESTED state"));
 
-        LOGGER.trace("The following REQUESTED state was read {}",state);
+        LOGGER.trace("The following REQUESTED state was read {}", state);
         return state;
     }
 
     @Override
     public FileSysIndexStateEntity findAppliedState() {
-        final FileSysIndexStateEntity state =  fileSysIndexStateRepository.findByCode(APPLIED).orElseThrow(()->
+        final FileSysIndexStateEntity state = fileSysIndexStateRepository.findByCode(APPLIED).orElseThrow(() ->
                 new IllegalStateException("Cannot find APPLIED state"));
-        LOGGER.trace("The following APPLIED state was read {}",state);
+        LOGGER.trace("The following APPLIED state was read {}", state);
         return state;
     }
 
     @Override
     public FileSysIndexStateEntity findArchivedState() {
-        final FileSysIndexStateEntity state = fileSysIndexStateRepository.findByCode(ARCHIVED).orElseThrow(()->
+        final FileSysIndexStateEntity state = fileSysIndexStateRepository.findByCode(ARCHIVED).orElseThrow(() ->
                 new IllegalStateException("Cannot find ARCHIVED state"));
-        LOGGER.trace("The following ARCHIVED state was read {}",state);
+        LOGGER.trace("The following ARCHIVED state was read {}", state);
         return state;
     }
 }

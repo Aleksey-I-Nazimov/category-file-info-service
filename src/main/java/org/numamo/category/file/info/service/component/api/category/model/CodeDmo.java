@@ -10,12 +10,15 @@ import java.util.Objects;
  */
 public final class CodeDmo {
 
-    private final String code;
-    private final String name;
+    private String code;
+    private String name;
 
     public CodeDmo(String code, String name) {
         this.code = code;
         this.name = name;
+    }
+
+    public CodeDmo() {
     }
 
     public String getCode() {

@@ -5,6 +5,6 @@ import org.numamo.category.file.info.service.repository.entity.CategoryEntity;
 
 public interface CategoriesComponent {
 
-    CategoryEntity save (CategoryDmo category);
+    CategoryEntity save(CategoryDmo category);
 
 }

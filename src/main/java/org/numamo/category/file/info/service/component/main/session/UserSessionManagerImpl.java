@@ -1,15 +1,15 @@
 package org.numamo.category.file.info.service.component.main.session;
 
 import org.numamo.category.file.info.service.component.api.main.mapper.UserSessionMapper;
-import org.numamo.category.file.info.service.component.api.main.session.UserComponent;
 import org.numamo.category.file.info.service.component.api.main.session.UserSessionManager;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.IdGenerator;
+import org.numamo.category.file.info.service.component.api.main.user.UserComponent;
 import org.numamo.category.file.info.service.config.api.AppConfig;
 import org.numamo.category.file.info.service.repository.api.FileSessionRepository;
 import org.numamo.category.file.info.service.repository.api.index.FileSysIndexEditor;
 import org.numamo.category.file.info.service.repository.entity.FileSessionEntity;
-import org.numamo.category.file.info.service.repository.entity.UserRecordEntity;
 import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
+import org.numamo.category.file.info.service.repository.entity.user.UserRecordEntity;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,11 +19,11 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.transaction.annotation.Isolation.READ_COMMITTED;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
+import static org.springframework.transaction.annotation.Propagation.NESTED;
 
 
 @Component
@@ -60,7 +60,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
 
     // Public API:-----------------------------------------------------------------------
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public long createNewSession(final String userLogin) {
 
         LOGGER.info("Creating new session with user login = {}", userLogin);
@@ -68,7 +68,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
         final UserRecordEntity user = userComponent.getUserRecord(userLogin);
 
         final FileSysIndexEntity actualIndex = fileSysIndexEditor.findAppliedActualIndex()
-                .orElseThrow(()->new IllegalArgumentException("The actual index was not created"));
+                .orElseThrow(() -> new IllegalStateException("The actual index was not created"));
 
         final FileSessionEntity fileSessionEntity = userSessionMapper
                 .makeNewFileSessionEntity(idGenerator.nextId(), user, actualIndex);
@@ -79,7 +79,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
     }
 
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public boolean updateUserSession(long sessionId) {
 
         LOGGER.info("Updating user session was requested: {}", sessionId);
@@ -96,7 +96,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
     }
 
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = NESTED, isolation = READ_COMMITTED)
     public boolean hasActiveUserSessions() {
 
         LOGGER.trace("Requesting active user sessions");
@@ -117,7 +117,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
     }
 
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public void cleanExpiredSessions() {
 
         /* Closing sessions with index */
@@ -144,8 +144,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
             LOGGER.debug("Requested active sessions with actual index: {}", fileSessionList);
             return fileSessionList;
         } else {
-            LOGGER.warn("No actual index. Exception was suppressed!");
-            return emptyList();
+            throw new IllegalStateException("No actual index was found");
         }
     }
 

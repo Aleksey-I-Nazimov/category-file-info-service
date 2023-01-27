@@ -4,8 +4,8 @@ import org.numamo.category.file.info.service.component.api.category.model.FileOb
 import org.numamo.category.file.info.service.component.api.main.mapper.FileRepoMapper;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.FileAccessComponent;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.IdGenerator;
-import org.numamo.category.file.info.service.repository.api.UserRecordRepository;
 import org.numamo.category.file.info.service.repository.api.dictionary.FileAccessDescriptorRepository;
+import org.numamo.category.file.info.service.repository.api.user.UserRecordRepository;
 import org.numamo.category.file.info.service.repository.entity.FileAccessEntity;
 import org.numamo.category.file.info.service.repository.entity.FileEntity;
 import org.slf4j.Logger;

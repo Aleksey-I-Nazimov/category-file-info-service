@@ -18,7 +18,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Component
 public final class FileComponentImpl implements FileComponent {
 
-    private static final Logger LOGGER = getLogger (FileComponentImpl.class);
+    private static final Logger LOGGER = getLogger(FileComponentImpl.class);
 
     private final AppConfig appConfig;
 

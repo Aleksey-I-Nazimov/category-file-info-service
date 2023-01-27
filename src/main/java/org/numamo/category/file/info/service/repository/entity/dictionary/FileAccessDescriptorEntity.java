@@ -8,15 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-
 @Entity
-@Table(name="file_access_descriptor")
+@Table(name = "file_access_descriptor")
 public final class FileAccessDescriptorEntity extends BasicEntity {
 
-    @Column(name="code",nullable=false,unique=true)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
 
-    @Column(name="info",nullable=false)
+    @Column(name = "info", nullable = false)
     private String info;
 
 

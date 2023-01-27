@@ -16,10 +16,10 @@
             <column name="id" type="NUMBER" remarks="The numerical primary key">
                 <constraints primaryKey="true" primaryKeyName="category_id_pk"/>
             </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="The time of creating">
-                <constraints nullable="true"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of creating"/>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of updating"/>
 
             <column name="code" type="VARCHAR(255)" remarks="The category technical code">
                 <constraints nullable="false" unique="true"/>

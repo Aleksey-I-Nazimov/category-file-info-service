@@ -55,21 +55,19 @@ public class FileSysIndexEditorImpl implements FileSysIndexEditor {
 
         final FileSysIndexStateEntity requestedState = fileSysIndexStateReader.findRequestedState();
         final List<FileSysIndexEntity> requestedIndexes = fileSysIndexRepository.findAllByFileSysIndexState(requestedState);
+        final FileSysIndexEntity actualIndex = findAppliedActualIndex()
+                .orElseThrow(() -> new IllegalStateException("The applied actual index was not found!"));
 
-        return findAppliedActualIndex().map(
-                actualIndex -> {
-                    if (requestedIndexes.isEmpty()) {
-                        return makeAndSaveRequestedIndex(actualIndex, requestedState);
+        if (requestedIndexes.isEmpty()) {
+            return Optional.of(makeAndSaveRequestedIndex(actualIndex, requestedState));
 
-                    } else if (requestedIndexes.size() > 1) {
-                        throw new IllegalStateException("Multiple 'requested' indexes: " + requestedIndexes);
+        } else if (requestedIndexes.size() > 1) {
+            throw new IllegalStateException("Multiple 'requested' indexes: " + requestedIndexes);
 
-                    } else {
-                        LOGGER.warn("The requested index has already been created: {}", requestedIndexes);
-                        return null;
-                    }
-                }
-        );
+        } else {
+            LOGGER.warn("The requested index has already been created: {}", requestedIndexes);
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -133,6 +131,19 @@ public class FileSysIndexEditorImpl implements FileSysIndexEditor {
 
         } else {
             throw new ArchivedIndexIllegalStateException(newIndex);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
+    public void removeRequestedIndex(FileSysIndexEntity newRequestedSysIndexEntity) {
+
+        LOGGER.debug("Request for removing the new index {}", newRequestedSysIndexEntity);
+
+        if (newRequestedSysIndexEntity.getFileSysIndexState().isRequested()) {
+            fileSysIndexRepository.delete(newRequestedSysIndexEntity);
+        } else {
+            throw new IllegalArgumentException("The entity has failed state: " + newRequestedSysIndexEntity);
         }
     }
 

@@ -8,7 +8,7 @@ import org.numamo.category.file.info.service.repository.entity.index.FileSysInde
 import javax.persistence.*;
 import java.util.List;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.*;
 
 /**
  * The entity of the single file info
@@ -16,37 +16,36 @@ import static javax.persistence.CascadeType.ALL;
  * @author Nazimov Aleksey I.
  */
 @Entity
-@Table(name="file")
+@Table(name = "file")
 public final class FileEntity extends BasicEntity {
 
-    @Column(name="name",nullable=false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="full_path",nullable=false)
+    @Column(name = "full_path", nullable = false)
     private String fullPath;
 
-    @Column(name="byte_size")
+    @Column(name = "byte_size")
     private long byteSize;
 
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name="category_id",nullable = false)
+    @ManyToOne(cascade = PERSIST)
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
 
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name="folder_id",nullable=false)
+    @ManyToOne(cascade = PERSIST)
+    @JoinColumn(name = "folder_id", nullable = false)
     private FolderEntity folder;
 
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name="file_extension_id",nullable=false)
+    @ManyToOne(cascade = MERGE)
+    @JoinColumn(name = "file_extension_id", nullable = false)
     private FileExtensionEntity fileExtension;
 
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name="file_sys_index_id",nullable=false)
+    @ManyToOne(cascade = MERGE)
+    @JoinColumn(name = "file_sys_index_id", nullable = false)
     private FileSysIndexEntity fileSysIndex;
 
     @OneToMany(mappedBy = "file", orphanRemoval = true, cascade = ALL)
     private List<FileAccessEntity> fileAccessList;
-
 
 
     public String getName() {

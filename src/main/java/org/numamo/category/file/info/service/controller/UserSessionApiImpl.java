@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import static java.lang.Long.parseLong;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
@@ -25,12 +26,12 @@ public class UserSessionApiImpl implements UserSessionApi {
     @Override
     public Long recreateSession(UserSessionRqDto userSessionRqDto) {
 
-        LOGGER.info ("Request for recreating user session: {}",userSessionRqDto);
+        LOGGER.info("Request for recreating user session: {}", userSessionRqDto);
 
         final long sessionId = userSessionProvider
-                .recreateSession(userSessionRqDto.getUserLogin(),userSessionRqDto.getExistedSessionId());
+                .recreateSession(userSessionRqDto.getUserLogin(), parseLong(userSessionRqDto.getExistedSessionId()));
 
-        LOGGER.info("The user session was made with ID = {}",sessionId);
+        LOGGER.info("The user session was made with ID = {}", sessionId);
         return sessionId;
     }
 }

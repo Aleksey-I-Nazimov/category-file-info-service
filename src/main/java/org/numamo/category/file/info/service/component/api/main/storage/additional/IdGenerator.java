@@ -8,6 +8,6 @@ package org.numamo.category.file.info.service.component.api.main.storage.additio
  */
 public interface IdGenerator {
 
-    long nextId ();
+    long nextId();
 
 }

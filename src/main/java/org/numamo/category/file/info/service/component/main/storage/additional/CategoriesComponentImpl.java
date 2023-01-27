@@ -42,7 +42,7 @@ public class CategoriesComponentImpl implements CategoriesComponent {
         final CategoryEntity categoryEntity = categoryMapper.makeByDmo(category, idGenerator.nextId());
         categoryRepository.save(categoryEntity);
 
-        LOGGER.trace("The following category {} was saved as {}",category,categoryEntity);
+        LOGGER.trace("The following category {} was saved as {}", category, categoryEntity);
         return categoryEntity;
     }
 

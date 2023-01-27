@@ -42,7 +42,7 @@ public class FileSysIndexServiceStatusApiImpl implements FileSysIndexServiceStat
     public ResponseEntity<Boolean> isSysIndexEnabled() {
         LOGGER.info("Request for sys index state");
         final boolean result = fileSysIndexServiceStatusProvider.isEnabled();
-        LOGGER.info("Request for disabling sys index state: {}",result);
+        LOGGER.info("Request for disabling sys index state: {}", result);
         return ok(result);
     }
 

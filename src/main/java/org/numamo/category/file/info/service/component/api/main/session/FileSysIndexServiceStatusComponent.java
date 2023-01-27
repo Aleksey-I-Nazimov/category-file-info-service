@@ -5,7 +5,7 @@ import org.numamo.category.file.info.service.repository.entity.index.FileSysInde
 
 public interface FileSysIndexServiceStatusComponent {
 
-    void changeStatus (boolean enabled);
+    void changeStatus(boolean enabled);
 
     FileSysIndexServiceStatusEntity readActualStatus();
 

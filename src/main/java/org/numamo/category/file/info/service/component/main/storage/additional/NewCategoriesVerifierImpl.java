@@ -68,10 +68,10 @@ public class NewCategoriesVerifierImpl implements NewCategoriesVerifier {
             final List<CategoryDmo> categories
     ) {
         final List<String> newExtensions = new ArrayList<>(new HashSet<>(categories.stream()
-        .flatMap(cat->cat.getFileObject().getAllExtensions().stream()).collect(toList())));
+                .flatMap(cat -> cat.getFileObject().getAllExtensions().stream()).collect(toList())));
 
         final List<String> extensions = new ArrayList<>();
-        fileExtensionRepository.findAll().forEach(r->extensions.add(r.getCode()));
+        fileExtensionRepository.findAll().forEach(r -> extensions.add(r.getCode()));
         newExtensions.removeAll(extensions);
         if (!newExtensions.isEmpty()) {
             throw new IllegalStateException("Required extensions are not in the dictionary: " + newExtensions);

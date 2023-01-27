@@ -17,7 +17,7 @@ public final class IdGeneratorImpl implements IdGenerator {
     @Override
     public long nextId() {
         final long id = UUID.randomUUID().getLeastSignificantBits();
-        LOGGER.trace("Requested ID={}",id);
+        LOGGER.trace("Requested ID={}", id);
         return id;
     }
 }

@@ -15,7 +15,7 @@ import static javax.persistence.LockModeType.PESSIMISTIC_WRITE;
 public interface FileSysIndexServiceStatusRepository extends CrudRepository<FileSysIndexServiceStatusEntity, Long> {
 
     @Lock(PESSIMISTIC_READ)
-    List<FileSysIndexServiceStatusEntity> findAllByActual (Boolean actual);
+    List<FileSysIndexServiceStatusEntity> findAllByActual(Boolean actual);
 
     @Lock(PESSIMISTIC_WRITE)
     @SuppressWarnings("unchecked")
