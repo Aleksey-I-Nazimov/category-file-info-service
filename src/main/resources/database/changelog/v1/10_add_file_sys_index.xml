@@ -17,24 +17,20 @@
                 <constraints primaryKey="true" primaryKeyName="file_sys_index_id_pk"/>
             </column>
             <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"
-                    remarks="The time of creating">
-                <constraints nullable="true"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
-
-            <column name="number" type="NUMBER" remarks="The index number">
-                <constraints nullable="false" unique="true"/>
-            </column>
-
-            <column name="info" type="VARCHAR(1024)" remarks="The index additional info record"/>
+                    remarks="The time of creating"/>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of updating"/>
 
             <column name="file_sys_index_state_id" type="NUMBER" remarks="The file system index state foreign key">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="prev_file_sys_index_id" type="NUMBER" remarks="The previous file system index foreign key">
-                <constraints nullable="false"/>
+            <column name="info" type="VARCHAR(1024)" remarks="The index additional info record"/>
+            <column name="number" type="NUMBER" remarks="The sequential index number">
+                <constraints unique="true" nullable="false"/>
             </column>
+
+            <column name="prev_file_sys_index_id" type="NUMBER" remarks="The previous file system index foreign key"/>
         </createTable>
 
     </changeSet>

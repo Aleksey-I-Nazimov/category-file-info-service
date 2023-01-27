@@ -31,7 +31,7 @@ public final class FileSysIndexServiceStatusEntity extends BasicEntity {
     private String info;
 
     @OneToOne
-    @JoinColumn(name="prev_file_sys_index_service_status_id",nullable = false)
+    @JoinColumn(name = "prev_file_sys_index_service_status_id")
     private FileSysIndexServiceStatusEntity prevFileSysIndexServiceStatus;
 
 

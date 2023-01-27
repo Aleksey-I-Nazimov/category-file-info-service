@@ -16,12 +16,13 @@
             <column name="id" type="NUMBER" remarks="The numerical primary key">
                 <constraints primaryKey="true" primaryKeyName="file_session_id_pk"/>
             </column>
-            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP" remarks="The time of creating">
-                <constraints nullable="true"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of creating"/>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of updating"/>
 
-            <column name="active" type="NUMBER" remarks="The boolean flag of the session activity. 1 - active / 0 - not active">
+            <column name="active" type="BOOLEAN"
+                    remarks="The boolean flag of the session activity. TRUE - active / FALSE - not active">
                 <constraints nullable="false"/>
             </column>
             <column name="user_record_id" type="NUMBER" remarks="The user record foreign key">

@@ -17,10 +17,9 @@
                 <constraints primaryKey="true" primaryKeyName="user_record_id_pk"/>
             </column>
             <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"
-                    remarks="The time of creating">
-                <constraints nullable="true"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP" valueComputed="SYSDATE" remarks="The time of updating"/>
+                    remarks="The time of creating"/>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of updating"/>
 
             <column name="login" type="VARCHAR(1024)" remarks="The user login">
                 <constraints nullable="false" unique="true"/>

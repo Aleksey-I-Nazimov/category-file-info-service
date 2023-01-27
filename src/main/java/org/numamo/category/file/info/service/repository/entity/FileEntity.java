@@ -8,7 +8,7 @@ import org.numamo.category.file.info.service.repository.entity.index.FileSysInde
 import javax.persistence.*;
 import java.util.List;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.*;
 
 /**
  * The entity of the single file info
@@ -28,19 +28,19 @@ public final class FileEntity extends BasicEntity {
     @Column(name="byte_size")
     private long byteSize;
 
-    @ManyToOne(cascade = ALL)
+    @ManyToOne(cascade = PERSIST)
     @JoinColumn(name="category_id",nullable = false)
     private CategoryEntity category;
 
-    @ManyToOne(cascade = ALL)
+    @ManyToOne(cascade = PERSIST)
     @JoinColumn(name="folder_id",nullable=false)
     private FolderEntity folder;
 
-    @ManyToOne(cascade = ALL)
+    @ManyToOne(cascade = MERGE)
     @JoinColumn(name="file_extension_id",nullable=false)
     private FileExtensionEntity fileExtension;
 
-    @ManyToOne(cascade = ALL)
+    @ManyToOne(cascade = MERGE)
     @JoinColumn(name="file_sys_index_id",nullable=false)
     private FileSysIndexEntity fileSysIndex;
 

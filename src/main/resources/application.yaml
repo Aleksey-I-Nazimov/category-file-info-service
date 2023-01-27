@@ -19,7 +19,7 @@ spring:
     default-schema: public
 
 app:
-  category-file-root: /
-  category-file-name: -|||categories|||-
-  user-access-file-name: ->>>access-file-name<<<-
+  category-file-root: C:/Users/Alex/Desktop/CFIS_TEST
+  category-file-name: .cfis-categories
+  user-access-file-name: .cfis-user-access-file
   user-session-expiration-timeout: 600000

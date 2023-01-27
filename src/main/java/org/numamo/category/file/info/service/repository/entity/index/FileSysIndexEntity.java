@@ -25,7 +25,7 @@ public final class FileSysIndexEntity extends BasicEntity {
     private long number;
 
     @ManyToOne
-    @JoinColumn(name="file_sys_index_state_id")
+    @JoinColumn(name = "file_sys_index_state_id", nullable = false)
     private FileSysIndexStateEntity fileSysIndexState;
 
     @OneToOne

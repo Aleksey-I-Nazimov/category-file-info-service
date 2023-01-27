@@ -6,7 +6,8 @@ import org.numamo.category.file.info.service.repository.entity.index.FileSysInde
 
 import javax.persistence.*;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
 
 
 @Entity
@@ -16,15 +17,15 @@ public final class FolderEntity extends BasicEntity {
     @Column(name="name",nullable=false)
     private String name;
 
-    @ManyToOne(cascade = ALL)
+    @ManyToOne(cascade = PERSIST)
     @JoinColumn(name="category_id",nullable = false)
     private CategoryEntity category;
 
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name="parent_id",nullable=false)
+    @ManyToOne(cascade = PERSIST)
+    @JoinColumn(name = "parent_id")
     private FolderEntity parent;
 
-    @ManyToOne
+    @ManyToOne(cascade = MERGE)
     @JoinColumn(name="file_sys_index_id",nullable=false)
     private FileSysIndexEntity fileSysIndex;
 

@@ -1,4 +1,10 @@
 ﻿ID,CODE,INFO
 1,png,Picture not gif
 2,jpeg,Journal photo expert group
-3,mp4,New video file format
+3,mp3,Common music format
+4,mp4,New video file format
+5,djv,Old compact scanner format
+6,djvu,Old compact scanner format
+7,pdf,Old scanner format
+8,rtf, Text format
+

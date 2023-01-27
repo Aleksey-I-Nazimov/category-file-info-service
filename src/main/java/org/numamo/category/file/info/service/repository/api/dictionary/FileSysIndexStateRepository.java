@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface FileSysIndexStateRepository extends CrudRepository<FileSysIndexStateEntity,Long> {
+public interface FileSysIndexStateRepository extends CrudRepository<FileSysIndexStateEntity, Long> {
 
     Optional<FileSysIndexStateEntity> findByCode(String code);
 

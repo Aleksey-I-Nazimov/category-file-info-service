@@ -3,7 +3,6 @@ package org.numamo.category.file.info.service.component.api.category.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import static java.util.Collections.reverse;
 import static java.util.Collections.unmodifiableList;
@@ -73,7 +72,12 @@ public final class FileObjectDmo {
     public String getExtension () {
         if (isFile()) {
             try {
-                return this.name.split(EXTENSION_SEPARATOR_REGEXP)[1];
+                final String[] fileNameParts = this.name.split(EXTENSION_SEPARATOR_REGEXP);
+                if (fileNameParts.length > 1) {
+                    return fileNameParts[fileNameParts.length - 1];
+                } else {
+                    throw new IllegalArgumentException("The file name has no extensions " + this.name);
+                }
             } catch (Exception e) {
                 throw new IllegalStateException("Extracting file extension was failed: cause->",e);
             }

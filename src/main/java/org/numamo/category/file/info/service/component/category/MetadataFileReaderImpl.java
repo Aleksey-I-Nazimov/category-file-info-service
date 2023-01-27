@@ -31,7 +31,7 @@ public final class MetadataFileReaderImpl implements MetadataFileReader {
             LOGGER.debug("Read category codes: {} from {}",categories,categoryFile);
             return categories;
         } catch (Exception e) {
-            throw new IllegalStateException("The input category metadata file cannot be read: "+categoryFile);
+            throw new IllegalStateException("The input category metadata file cannot be read: " + categoryFile, e);
         }
     }
 
