@@ -7,10 +7,14 @@ import org.mapstruct.MappingTarget;
 import org.numamo.category.file.info.service.component.api.category.model.FileObjectDmo;
 import org.numamo.category.file.info.service.controller.dto.FileDto;
 import org.numamo.category.file.info.service.controller.dto.FolderDto;
-import org.numamo.category.file.info.service.repository.entity.*;
+import org.numamo.category.file.info.service.repository.entity.CategoryEntity;
+import org.numamo.category.file.info.service.repository.entity.FileAccessEntity;
+import org.numamo.category.file.info.service.repository.entity.FileEntity;
+import org.numamo.category.file.info.service.repository.entity.FolderEntity;
 import org.numamo.category.file.info.service.repository.entity.dictionary.FileAccessDescriptorEntity;
 import org.numamo.category.file.info.service.repository.entity.dictionary.FileExtensionEntity;
 import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
+import org.numamo.category.file.info.service.repository.entity.user.UserRecordEntity;
 
 import java.util.ArrayList;
 import java.util.List;

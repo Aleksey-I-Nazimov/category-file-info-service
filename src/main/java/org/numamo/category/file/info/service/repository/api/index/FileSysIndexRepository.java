@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Repository
-public interface FileSysIndexRepository extends CrudRepository<FileSysIndexEntity,Long> {
+public interface FileSysIndexRepository extends CrudRepository<FileSysIndexEntity, Long> {
 
     List<FileSysIndexEntity> findAllByFileSysIndexState(FileSysIndexStateEntity fileSysIndexState);
 

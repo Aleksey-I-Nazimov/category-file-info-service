@@ -29,7 +29,7 @@ public class FileSysIndexServiceStatusProviderImpl implements FileSysIndexServic
     @Transactional(isolation = READ_COMMITTED)
     public void setEnabled(boolean enabled) {
         statusComponent.changeStatus(enabled);
-        LOGGER.trace("The new status was saved: {}",enabled);
+        LOGGER.trace("The new status was saved: {}", enabled);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class FileSysIndexServiceStatusProviderImpl implements FileSysIndexServic
 
         final FileSysIndexServiceStatusEntity existedStatus = statusComponent.readActualStatus();
         final boolean flag = existedStatus.getEnabled();
-        LOGGER.debug("Sys index service status is enabled: {}",flag);
+        LOGGER.debug("Sys index service status is enabled: {}", flag);
         return flag;
     }
 

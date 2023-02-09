@@ -5,9 +5,9 @@ public interface AppConfig {
 
     String getCategoryFileRoot();
 
-    String getCategoryFileName ();
+    String getCategoryFileName();
 
-    String getUserAccessFileName ();
+    String getUserAccessFileName();
 
     long getUserSessionExpirationTimeout();
 

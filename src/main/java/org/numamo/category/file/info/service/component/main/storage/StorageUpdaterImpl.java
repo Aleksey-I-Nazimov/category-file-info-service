@@ -5,7 +5,7 @@ import org.numamo.category.file.info.service.component.api.category.model.Catego
 import org.numamo.category.file.info.service.component.api.main.storage.StorageUpdater;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.CategoriesComponent;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.SaveFileComponent;
-import org.numamo.category.file.info.service.component.api.main.session.UserComponent;
+import org.numamo.category.file.info.service.component.api.main.user.UserComponent;
 import org.numamo.category.file.info.service.repository.api.index.FileSysIndexRepository;
 import org.numamo.category.file.info.service.repository.entity.CategoryEntity;
 import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
@@ -48,31 +48,31 @@ public class StorageUpdaterImpl implements StorageUpdater {
     }
 
     @Override
-    @Transactional(isolation=READ_COMMITTED)
+    @Transactional(isolation = READ_COMMITTED)
     public void update(final long fileSysIndexId) {
 
         // Searching REQUESTED index:--------------------------------
         LOGGER.debug("Requesting update by file sys index: {}", fileSysIndexId);
         final FileSysIndexEntity fileSysIndex = fileSysIndexRepository
                 .findById(fileSysIndexId)
-                .orElseThrow(()->
-                        new IllegalArgumentException("The requested index was not found by key="+fileSysIndexId));
+                .orElseThrow(() ->
+                        new IllegalArgumentException("The requested index was not found by key=" + fileSysIndexId));
 
         // Reading the category model:-------------------------------
         final List<CategoryDmo> categories = categoryReader.read();
 
         // Updating users for files:---------------------------------
-        userComponent.updateUsers(
+        userComponent.checkAndInsertNewRecords(
                 categories
                         .stream()
-                        .flatMap(c->c.getFileObject().getUserAccessList().stream())
+                        .flatMap(c -> c.getFileObject().getUserAccessList().stream())
                         .collect(toList())
         );
 
         // Updating files from categories:---------------------------
         for (final CategoryDmo category : categories) {
             final CategoryEntity categoryEntity = categoryComponent.save(category);
-            fileComponent.saveCategoryFilesAndFolders(category.getFileObject(),categoryEntity,fileSysIndex);
+            fileComponent.saveCategoryFilesAndFolders(category.getFileObject(), categoryEntity, fileSysIndex);
         }
 
         LOGGER.trace("Update was completed: {}", categories);

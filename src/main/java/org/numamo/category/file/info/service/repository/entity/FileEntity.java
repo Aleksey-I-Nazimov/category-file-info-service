@@ -16,37 +16,36 @@ import static javax.persistence.CascadeType.*;
  * @author Nazimov Aleksey I.
  */
 @Entity
-@Table(name="file")
+@Table(name = "file")
 public final class FileEntity extends BasicEntity {
 
-    @Column(name="name",nullable=false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="full_path",nullable=false)
+    @Column(name = "full_path", nullable = false)
     private String fullPath;
 
-    @Column(name="byte_size")
+    @Column(name = "byte_size")
     private long byteSize;
 
     @ManyToOne(cascade = PERSIST)
-    @JoinColumn(name="category_id",nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
 
     @ManyToOne(cascade = PERSIST)
-    @JoinColumn(name="folder_id",nullable=false)
+    @JoinColumn(name = "folder_id", nullable = false)
     private FolderEntity folder;
 
     @ManyToOne(cascade = MERGE)
-    @JoinColumn(name="file_extension_id",nullable=false)
+    @JoinColumn(name = "file_extension_id", nullable = false)
     private FileExtensionEntity fileExtension;
 
     @ManyToOne(cascade = MERGE)
-    @JoinColumn(name="file_sys_index_id",nullable=false)
+    @JoinColumn(name = "file_sys_index_id", nullable = false)
     private FileSysIndexEntity fileSysIndex;
 
     @OneToMany(mappedBy = "file", orphanRemoval = true, cascade = ALL)
     private List<FileAccessEntity> fileAccessList;
-
 
 
     public String getName() {

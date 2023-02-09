@@ -18,6 +18,12 @@ spring:
     change-log: classpath:category_file_info_service_changelog.xml
     default-schema: public
 
+logging:
+  level:
+    root: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+
 app:
   category-file-root: C:/Users/Alex/Desktop/CFIS_TEST
   category-file-name: .cfis-categories

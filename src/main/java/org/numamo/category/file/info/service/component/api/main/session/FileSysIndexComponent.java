@@ -16,9 +16,10 @@ public interface FileSysIndexComponent {
     /**
      * The method creates the new index and returns their ID.
      * The method doesn't create the new index
+     *
      * @return
      */
-    Optional<Long> getRequestedFileSysIndex ();
+    Optional<Long> getRequestedFileSysIndex();
 
     /**
      * The method finalizes the process of requested index.
@@ -26,7 +27,7 @@ public interface FileSysIndexComponent {
      *
      * @param fileSysIndexId is the primary index key
      */
-    void finalizeRequestedIndex (long fileSysIndexId);
+    void finalizeRequestedIndex(long fileSysIndexId);
 
     /**
      * The method removes the file sys index

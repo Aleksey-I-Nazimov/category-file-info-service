@@ -1,7 +1,6 @@
 package org.numamo.category.file.info.service.component.api.main.provider;
 
 import org.numamo.category.file.info.service.controller.dto.CategoryDto;
-import org.numamo.category.file.info.service.controller.dto.FolderDto;
 
 import java.util.List;
 
@@ -15,8 +14,9 @@ public interface CategoryProvider {
 
     /**
      * The method reads all available categories
+     *
      * @return the list categories
      */
-    List<CategoryDto> readAll ();
+    List<CategoryDto> readAll();
 
 }

@@ -31,7 +31,7 @@ public class CategoryApiImpl implements CategoryApi {
 
         final List<CategoryDto> categories = categoryProvider.readAll();
 
-        LOGGER.info("The following category list was read: {}",categories);
+        LOGGER.info("The following category list was read: {}", categories);
         return categories;
     }
 }

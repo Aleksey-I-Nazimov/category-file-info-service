@@ -26,12 +26,12 @@ public class UserSessionApiImpl implements UserSessionApi {
     @Override
     public Long recreateSession(UserSessionRqDto userSessionRqDto) {
 
-        LOGGER.info ("Request for recreating user session: {}",userSessionRqDto);
+        LOGGER.info("Request for recreating user session: {}", userSessionRqDto);
 
         final long sessionId = userSessionProvider
                 .recreateSession(userSessionRqDto.getUserLogin(), parseLong(userSessionRqDto.getExistedSessionId()));
 
-        LOGGER.info("The user session was made with ID = {}",sessionId);
+        LOGGER.info("The user session was made with ID = {}", sessionId);
         return sessionId;
     }
 }

@@ -3,6 +3,7 @@ package org.numamo.category.file.info.service.repository.entity;
 
 import org.numamo.category.file.info.service.repository.entity.basics.BasicEntity;
 import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
+import org.numamo.category.file.info.service.repository.entity.user.UserRecordEntity;
 
 import javax.persistence.*;
 
@@ -17,21 +18,21 @@ import javax.persistence.*;
  * @author Nazimov Aleksey I.
  */
 @Entity
-@Table(name="file_session")
+@Table(name = "file_session")
 public final class FileSessionEntity extends BasicEntity {
 
-    @Column(name="active",nullable=false)
+    @Column(name = "active", nullable = false)
     private Boolean active;
 
     @ManyToOne
-    @JoinColumn(name="user_record_id",nullable=false)
+    @JoinColumn(name = "user_record_id", nullable = false)
     private UserRecordEntity userRecord;
 
     @ManyToOne
-    @JoinColumn(name="file_sys_index_id",nullable=false)
+    @JoinColumn(name = "file_sys_index_id", nullable = false)
     private FileSysIndexEntity fileSysIndex;
 
-    @Column(name="info")
+    @Column(name = "info")
     private String info;
 
 

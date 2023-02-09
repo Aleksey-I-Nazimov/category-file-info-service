@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public final class CategoryEntity extends BasicEntity {
 
-    @Column(name="code",nullable=false,unique=true)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
 
-    @Column(name="name",nullable=false,unique=true)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     public String getCode() {

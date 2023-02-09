@@ -11,14 +11,14 @@ import static javax.persistence.CascadeType.PERSIST;
 
 
 @Entity
-@Table(name="folder")
+@Table(name = "folder")
 public final class FolderEntity extends BasicEntity {
 
-    @Column(name="name",nullable=false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne(cascade = PERSIST)
-    @JoinColumn(name="category_id",nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
 
     @ManyToOne(cascade = PERSIST)
@@ -26,7 +26,7 @@ public final class FolderEntity extends BasicEntity {
     private FolderEntity parent;
 
     @ManyToOne(cascade = MERGE)
-    @JoinColumn(name="file_sys_index_id",nullable=false)
+    @JoinColumn(name = "file_sys_index_id", nullable = false)
     private FileSysIndexEntity fileSysIndex;
 
 

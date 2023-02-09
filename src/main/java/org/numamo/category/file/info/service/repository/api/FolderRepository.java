@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FolderRepository extends CrudRepository<FolderEntity,Long> {
+public interface FolderRepository extends CrudRepository<FolderEntity, Long> {
 
     List<FolderEntity> findAllByCategoryAndParentAndFileSysIndex(CategoryEntity category, FolderEntity parent, FileSysIndexEntity fileSysIndexEntity);
 

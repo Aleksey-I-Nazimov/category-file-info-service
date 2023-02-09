@@ -63,7 +63,7 @@ public final class CategoryReaderImpl implements CategoryReader {
     }
 
 
-    private List<CodeDmo> searchCategoryFile (final File root) {
+    private List<CodeDmo> searchCategoryFile(final File root) {
 
         final List<File> subFiles = fileComponent.getSubFiles(root);
 
@@ -95,16 +95,16 @@ public final class CategoryReaderImpl implements CategoryReader {
             final FileObjectDmo parentFileObject
     ) {
         if (root.isDirectory()) {
-            return makeRoot(root,parentFileObject);
+            return makeRoot(root, parentFileObject);
 
         } else if (root.isFile()) {
             final FileObjectDmo fileObject = new FileObjectDmo(root.getName(),
                     parentFileObject, root.getTotalSpace());
-            LOGGER.trace("Read file: {}",fileObject);
+            LOGGER.trace("Read file: {}", fileObject);
             return fileObject;
 
         } else {
-            LOGGER.warn("Skipped file: {}",root);
+            LOGGER.warn("Skipped file: {}", root);
             return null;
         }
     }
@@ -125,7 +125,7 @@ public final class CategoryReaderImpl implements CategoryReader {
                         .filter(Objects::nonNull)
                         .collect(toList())
         );
-        LOGGER.trace("Read root: {}",rootFileObject);
+        LOGGER.trace("Read root: {}", rootFileObject);
         return rootFileObject;
     }
 

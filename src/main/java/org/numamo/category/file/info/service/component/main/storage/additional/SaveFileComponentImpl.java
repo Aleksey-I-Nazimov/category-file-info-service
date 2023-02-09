@@ -60,10 +60,9 @@ public class SaveFileComponentImpl implements SaveFileComponent {
             final CategoryEntity mainCategory,
             final FileSysIndexEntity fileSysIndex
     ) {
-        LOGGER.trace("Requesting for storing the file object {}",fileObjectDmo);
-        saveCategoryFilesAndFolders(fileObjectDmo,null,mainCategory,fileSysIndex);
+        LOGGER.trace("Requesting for storing the file object {}", fileObjectDmo);
+        saveCategoryFilesAndFolders(fileObjectDmo, null, mainCategory, fileSysIndex);
     }
-
 
 
     // Internal methods:-----------------------------------------------------------------

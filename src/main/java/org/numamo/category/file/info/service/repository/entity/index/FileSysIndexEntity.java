@@ -15,13 +15,13 @@ import javax.persistence.*;
  * @author Nazimov Aleksey I.
  */
 @Entity
-@Table(name="file_sys_index")
+@Table(name = "file_sys_index")
 public final class FileSysIndexEntity extends BasicEntity {
 
-    @Column(name="info")
+    @Column(name = "info")
     private String info;
 
-    @Column(name="number",nullable = false,unique=true)
+    @Column(name = "number", nullable = false, unique = true)
     private long number;
 
     @ManyToOne
@@ -29,7 +29,7 @@ public final class FileSysIndexEntity extends BasicEntity {
     private FileSysIndexStateEntity fileSysIndexState;
 
     @OneToOne
-    @JoinColumn(name="prev_file_sys_index_id")
+    @JoinColumn(name = "prev_file_sys_index_id")
     private FileSysIndexEntity prevFileSysIndex;
 
     public String getInfo() {

@@ -1,15 +1,15 @@
 package org.numamo.category.file.info.service.component.main.session;
 
 import org.numamo.category.file.info.service.component.api.main.mapper.UserSessionMapper;
-import org.numamo.category.file.info.service.component.api.main.session.UserComponent;
 import org.numamo.category.file.info.service.component.api.main.session.UserSessionManager;
 import org.numamo.category.file.info.service.component.api.main.storage.additional.IdGenerator;
+import org.numamo.category.file.info.service.component.api.main.user.UserComponent;
 import org.numamo.category.file.info.service.config.api.AppConfig;
 import org.numamo.category.file.info.service.repository.api.FileSessionRepository;
 import org.numamo.category.file.info.service.repository.api.index.FileSysIndexEditor;
 import org.numamo.category.file.info.service.repository.entity.FileSessionEntity;
-import org.numamo.category.file.info.service.repository.entity.UserRecordEntity;
 import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
+import org.numamo.category.file.info.service.repository.entity.user.UserRecordEntity;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -60,7 +60,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
 
     // Public API:-----------------------------------------------------------------------
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public long createNewSession(final String userLogin) {
 
         LOGGER.info("Creating new session with user login = {}", userLogin);
@@ -79,7 +79,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
     }
 
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public boolean updateUserSession(long sessionId) {
 
         LOGGER.info("Updating user session was requested: {}", sessionId);
@@ -117,7 +117,7 @@ public class UserSessionManagerImpl implements UserSessionManager {
     }
 
     @Override
-    @Transactional(propagation = MANDATORY,isolation = READ_COMMITTED)
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
     public void cleanExpiredSessions() {
 
         /* Closing sessions with index */

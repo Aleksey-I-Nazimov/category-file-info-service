@@ -8,26 +8,25 @@ import javax.persistence.*;
 /**
  * The file system index service status entity is used to make records about enabling and disabling
  * the file index service.
- *
+ * <p>
  * ENABLED = TRUE means that the index service can be started automatically or manually.
  * ENABLED = FALSE means that the index service was deactivated manually and indexation is NOT possible
- *
+ * <p>
  * ATTENTION: user requests of indexation are going to be rejected if ENABLED==false
  *
  * @author Nazimov Aleksey I.
- *
  */
 @Entity
-@Table(name="file_sys_index_service_status")
+@Table(name = "file_sys_index_service_status")
 public final class FileSysIndexServiceStatusEntity extends BasicEntity {
 
-    @Column(name="enabled",nullable=false)
+    @Column(name = "enabled", nullable = false)
     private Boolean enabled = false;
 
-    @Column(name="actual",nullable=false)
+    @Column(name = "actual", nullable = false)
     private Boolean actual = false;
 
-    @Column(name="info")
+    @Column(name = "info")
     private String info;
 
     @OneToOne

@@ -31,15 +31,15 @@ public final class UserAccessDmo {
         this.login = login;
     }
 
-    public static Set<String> trimCodes (List<UserAccessDmo> userRecords) {
+    public static Set<String> trimCodes(List<UserAccessDmo> userRecords) {
         final HashSet<String> set = new HashSet<>();
-        userRecords.forEach(u->set.add(u.code));
+        userRecords.forEach(u -> set.add(u.code));
         return set;
     }
 
     public static Set<String> trimUsers(List<UserAccessDmo> userRecords) {
         final HashSet<String> set = new HashSet<>();
-        userRecords.forEach(u->set.add(u.login));
+        userRecords.forEach(u -> set.add(u.login));
         return set;
     }
 

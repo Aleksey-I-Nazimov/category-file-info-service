@@ -21,7 +21,7 @@ public abstract class BasicEntity {
     @Column(name = "created_at")
     protected Instant createdAt;
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
     protected Instant updatedAt;
 
     public long getId() {

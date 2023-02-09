@@ -15,8 +15,9 @@ public interface FileProvider {
 
     /**
      * The method reads root directories by the category code
+     *
      * @param categoryCode is the string category code
-     * @param indexNumber is the current index number
+     * @param indexNumber  is the current index number
      * @return the list of read root folders
      */
     List<FolderDto> findRootFolders(String categoryCode, Long indexNumber);
@@ -24,7 +25,8 @@ public interface FileProvider {
 
     /**
      * The method of reading folders by tree coordinates
-     * @param parentKey is the primary KEY of the parent folder
+     *
+     * @param parentKey   is the primary KEY of the parent folder
      * @param indexNumber is the current index number
      * @return the list of folders
      */
@@ -33,7 +35,8 @@ public interface FileProvider {
 
     /**
      * The method of reading files by the parent and category
-     * @param parentKey is the primary key parent folder
+     *
+     * @param parentKey   is the primary key parent folder
      * @param indexNumber is the current index number
      * @return the list of files
      */

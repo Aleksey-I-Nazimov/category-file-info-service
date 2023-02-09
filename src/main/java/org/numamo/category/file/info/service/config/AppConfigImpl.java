@@ -23,8 +23,8 @@ public class AppConfigImpl implements AppConfig {
     private long userSessionExpirationTimeout;
 
     @PostConstruct
-    void postConstruct () {
-        LOGGER.info("The app config was set as: {}",this);
+    void postConstruct() {
+        LOGGER.info("The app config was set as: {}", this);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AppConfigImpl implements AppConfig {
     }
 
     @Value("${app.category-file-root}")
-    void setCategoryFileRoot (String categoryFileRoot) {
+    void setCategoryFileRoot(String categoryFileRoot) {
         this.categoryFileRoot = requireNonNull(categoryFileRoot);
     }
 

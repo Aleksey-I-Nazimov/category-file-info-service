@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface FileExtensionRepository extends CrudRepository<FileExtensionEntity,Long> {
+public interface FileExtensionRepository extends CrudRepository<FileExtensionEntity, Long> {
 
     Optional<FileExtensionEntity> findByCode(String code);
 

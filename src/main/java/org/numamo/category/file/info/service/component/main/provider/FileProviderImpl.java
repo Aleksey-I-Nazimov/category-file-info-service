@@ -66,7 +66,7 @@ public class FileProviderImpl implements FileProvider {
                 .findAllByCategoryAndParentAndFileSysIndex(category, null, sysIndexEntity);
 
         final List<FolderDto> folderDtoList = fileRepoMapper.makeFolders(folderEntities);
-        LOGGER.debug("Found folders {} by code {}",folderDtoList,categoryCode);
+        LOGGER.debug("Found folders {} by code {}", folderDtoList, categoryCode);
         return folderDtoList;
     }
 
@@ -125,12 +125,12 @@ public class FileProviderImpl implements FileProvider {
         }
     }
 
-    private CategoryEntity findCategory (final String categoryCode) {
-        return categoryRepository.findByCode(categoryCode).orElseThrow(()->
-                new IllegalArgumentException("Category code was not found by code: "+categoryCode));
+    private CategoryEntity findCategory(final String categoryCode) {
+        return categoryRepository.findByCode(categoryCode).orElseThrow(() ->
+                new IllegalArgumentException("Category code was not found by code: " + categoryCode));
     }
 
-    private FolderEntity findParent (
+    private FolderEntity findParent(
             final Long parentId,
             final FileSysIndexEntity fileSysIndexEntity
     ) {

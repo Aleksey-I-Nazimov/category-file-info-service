@@ -57,7 +57,7 @@ public class CategoryProviderImpl implements CategoryProvider {
                 .map(e -> categoryMapper.make(e, fileSysIndex))
                 .collect(toList());
 
-        LOGGER.debug("Read category list: {}",categoryDtoList);
+        LOGGER.debug("Read category list: {}", categoryDtoList);
         return categoryDtoList;
     }
 

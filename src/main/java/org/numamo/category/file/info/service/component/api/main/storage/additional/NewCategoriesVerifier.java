@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface NewCategoriesVerifier {
 
-    void check (List<CategoryDmo> categories);
+    void check(List<CategoryDmo> categories);
 
 }

@@ -8,19 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Objects;
 
-import static org.numamo.category.file.info.service.repository.impl.dictionary.FileSysIndexStateReaderImpl.APPLIED;
-import static org.numamo.category.file.info.service.repository.impl.dictionary.FileSysIndexStateReaderImpl.ARCHIVED;
-import static org.numamo.category.file.info.service.repository.impl.dictionary.FileSysIndexStateReaderImpl.REQUESTED;
+import static org.numamo.category.file.info.service.repository.impl.dictionary.FileSysIndexStateReaderImpl.*;
 
 
 @Entity
-@Table(name="file_sys_index_state")
+@Table(name = "file_sys_index_state")
 public final class FileSysIndexStateEntity extends BasicEntity {
 
-    @Column(name="code",nullable=false,unique=true)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
 
-    @Column(name="info",nullable=false)
+    @Column(name = "info", nullable = false)
     private String info;
 
     public String getCode() {
@@ -39,16 +37,16 @@ public final class FileSysIndexStateEntity extends BasicEntity {
         this.info = info;
     }
 
-    public boolean isArchived () {
-        return Objects.equals(getCode(),ARCHIVED);
+    public boolean isArchived() {
+        return Objects.equals(getCode(), ARCHIVED);
     }
 
-    public boolean isRequested () {
-        return Objects.equals(getCode(),REQUESTED);
+    public boolean isRequested() {
+        return Objects.equals(getCode(), REQUESTED);
     }
 
-    public boolean isApplied () {
-        return Objects.equals(getCode(),APPLIED);
+    public boolean isApplied() {
+        return Objects.equals(getCode(), APPLIED);
     }
 
     @Override

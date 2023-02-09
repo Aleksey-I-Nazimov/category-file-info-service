@@ -19,7 +19,8 @@ public class ServerCorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, OPTIONS");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        response.setHeader("Access-Control-Allow-Headers",
+                "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         chain.doFilter(req, res);
     }
 
