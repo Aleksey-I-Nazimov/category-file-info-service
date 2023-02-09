@@ -9,8 +9,8 @@ package org.numamo.category.file.info.service.controller.dto;
 public final class CategoryDto {
 
     private String code;
-
     private String name;
+    private String indexNumber;
 
     public String getCode() {
         return code;
@@ -28,11 +28,20 @@ public final class CategoryDto {
         this.name = name;
     }
 
+    public String getIndexNumber() {
+        return indexNumber;
+    }
+
+    public void setIndexNumber(String indexNumber) {
+        this.indexNumber = indexNumber;
+    }
+
     @Override
     public String toString() {
         return "CategoryDto{" +
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
+                ", indexNumber=" + indexNumber +
                 '}';
     }
 

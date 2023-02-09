@@ -13,6 +13,8 @@ public enum FileStorageUpdaterStateDto {
 
     BLOCK_BY_USER,
 
-    EXECUTING
+    EXECUTING,
+
+    FAILED
 
 }

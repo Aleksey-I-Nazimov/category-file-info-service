@@ -1,7 +1,7 @@
 package org.numamo.category.file.info.service.repository.api.index;
 
-import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
 import org.numamo.category.file.info.service.repository.api.index.exception.ArchivedIndexIllegalStateException;
+import org.numamo.category.file.info.service.repository.entity.index.FileSysIndexEntity;
 
 import java.util.Optional;
 
@@ -47,5 +47,13 @@ public interface FileSysIndexEditor {
      * was failed
      */
     void archiveActualIndex (FileSysIndexEntity newRequestedSysIndexEntity) throws ArchivedIndexIllegalStateException;
+
+    /**
+     * The method checks and removes the requested index.
+     * It's uses when the required update was aborted
+     *
+     * @param newRequestedSysIndexEntity is the reference of the requested index
+     */
+    void removeRequestedIndex(FileSysIndexEntity newRequestedSysIndexEntity);
 
 }

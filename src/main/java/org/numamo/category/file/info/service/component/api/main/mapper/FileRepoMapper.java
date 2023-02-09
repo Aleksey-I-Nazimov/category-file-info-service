@@ -23,6 +23,7 @@ public interface FileRepoMapper {
 
     List<FolderDto> makeFolders(List<FolderEntity> folderEntities);
 
+    @Mapping(target = "key", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "indexNumber", source = "fileSysIndex.number")
     FolderDto makeFolder(FolderEntity folderEntity);
@@ -30,6 +31,7 @@ public interface FileRepoMapper {
     List<FileDto> makeFiles(List<FileEntity> fileEntities);
 
 
+    @Mapping(target = "key", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "indexNumber", source = "fileSysIndex.number")
     @Mapping(target = "extensionCode", source = "fileExtension.code")
@@ -87,13 +89,13 @@ public interface FileRepoMapper {
             FileSysIndexEntity fileSysIndex
     );
 
-    @Mapping(target="id",source="id")
-    @Mapping(target="file",source="file")
-    @Mapping(target="fileAccessDescriptor",source="descriptor")
-    @Mapping(target="userRecord",source="userRecord")
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "file", source = "file")
+    @Mapping(target = "fileAccessDescriptor", source = "descriptor")
+    @Mapping(target = "userRecord", source = "userRecord")
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    FileAccessEntity mapFileAccessEntity (
+    FileAccessEntity mapFileAccessEntity(
             long id,
             FileEntity file,
             FileAccessDescriptorEntity descriptor,

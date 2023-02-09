@@ -16,35 +16,28 @@ public interface FileProvider {
     /**
      * The method reads root directories by the category code
      * @param categoryCode is the string category code
+     * @param indexNumber is the current index number
      * @return the list of read root folders
      */
-    List<FolderDto> findRootFolders(String categoryCode);
+    List<FolderDto> findRootFolders(String categoryCode, Long indexNumber);
 
 
     /**
      * The method of reading folders by tree coordinates
-     * @param parentFolderName is the name of root folder
-     * @param categoryCode is the category code
+     * @param parentKey is the primary KEY of the parent folder
+     * @param indexNumber is the current index number
      * @return the list of folders
      */
-    List<FolderDto> findFolders (String parentFolderName, String categoryCode);
-
-
-    /**
-     * The method reads root files by the category code
-     * @param categoryCode is the category code
-     * @return the list of read root files
-     */
-    List<FileDto> findRootFiles (String categoryCode);
+    List<FolderDto> findFolders(Long parentKey, Long indexNumber);
 
 
     /**
      * The method of reading files by the parent and category
-     * @param parentFolderName is the parent folder
-     * @param categoryCode is the category code
+     * @param parentKey is the primary key parent folder
+     * @param indexNumber is the current index number
      * @return the list of files
      */
-    List<FileDto> findFiles (String parentFolderName, String categoryCode);
+    List<FileDto> findFiles(Long parentKey, Long indexNumber);
 
 
 }

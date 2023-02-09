@@ -4,7 +4,7 @@ package org.numamo.category.file.info.service.controller.dto;
 public final class UserSessionRqDto {
 
     private String userLogin;
-    private Long existedSessionId;
+    private String existedSessionId;
 
     public String getUserLogin() {
         return userLogin;
@@ -14,11 +14,11 @@ public final class UserSessionRqDto {
         this.userLogin = userLogin;
     }
 
-    public Long getExistedSessionId() {
+    public String getExistedSessionId() {
         return existedSessionId;
     }
 
-    public void setExistedSessionId(Long existedSessionId) {
+    public void setExistedSessionId(String existedSessionId) {
         this.existedSessionId = existedSessionId;
     }
 

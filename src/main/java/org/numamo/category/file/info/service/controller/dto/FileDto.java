@@ -10,10 +10,19 @@ import java.util.List;
  */
 public final class FileDto {
 
+    private String key;
     private String name;
     private String extensionCode;
-    private Integer indexNumber;
+    private String indexNumber;
     private List<String> folders;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getName() {
         return name;
@@ -31,11 +40,11 @@ public final class FileDto {
         this.extensionCode = extensionCode;
     }
 
-    public Integer getIndexNumber() {
+    public String getIndexNumber() {
         return indexNumber;
     }
 
-    public void setIndexNumber(Integer indexNumber) {
+    public void setIndexNumber(String indexNumber) {
         this.indexNumber = indexNumber;
     }
 
@@ -50,7 +59,8 @@ public final class FileDto {
     @Override
     public String toString() {
         return "FileDto{" +
-                "name='" + name + '\'' +
+                "key=" + key +
+                ", name='" + name + '\'' +
                 ", extensionCode='" + extensionCode + '\'' +
                 ", indexNumber=" + indexNumber +
                 ", folders=" + folders +

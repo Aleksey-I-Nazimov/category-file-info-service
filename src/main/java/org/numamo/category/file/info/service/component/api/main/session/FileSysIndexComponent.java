@@ -20,6 +20,19 @@ public interface FileSysIndexComponent {
      */
     Optional<Long> getRequestedFileSysIndex ();
 
+    /**
+     * The method finalizes the process of requested index.
+     * The requiested index becomes applied
+     *
+     * @param fileSysIndexId is the primary index key
+     */
     void finalizeRequestedIndex (long fileSysIndexId);
+
+    /**
+     * The method removes the file sys index
+     *
+     * @param fileSysIndexId is the primary index key
+     */
+    void removeRequestedIndex(long fileSysIndexId);
 
 }

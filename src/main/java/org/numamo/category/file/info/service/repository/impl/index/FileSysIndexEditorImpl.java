@@ -134,6 +134,19 @@ public class FileSysIndexEditorImpl implements FileSysIndexEditor {
         }
     }
 
+    @Override
+    @Transactional(propagation = MANDATORY, isolation = READ_COMMITTED)
+    public void removeRequestedIndex(FileSysIndexEntity newRequestedSysIndexEntity) {
+
+        LOGGER.debug("Request for removing the new index {}", newRequestedSysIndexEntity);
+
+        if (newRequestedSysIndexEntity.getFileSysIndexState().isRequested()) {
+            fileSysIndexRepository.delete(newRequestedSysIndexEntity);
+        } else {
+            throw new IllegalArgumentException("The entity has failed state: " + newRequestedSysIndexEntity);
+        }
+    }
+
 
     // Internal methods:-----------------------------------------------------------------
     private FileSysIndexEntity makeAndSaveRequestedIndex(

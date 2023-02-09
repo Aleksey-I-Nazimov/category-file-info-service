@@ -1,10 +1,17 @@
 ﻿ID,CODE,INFO
 1,png,Picture not gif
 2,jpeg,Journal photo expert group
-3,mp3,Common music format
-4,mp4,New video file format
-5,djv,Old compact scanner format
-6,djvu,Old compact scanner format
-7,pdf,Old scanner format
-8,rtf, Text format
+3,jpg,Journal photo expert group
+4,mp3,Common music format
+5,mp4,New video file format
+6,djv,Old compact scanner format
+7,djvu,Old compact scanner format
+8,pdf,Old scanner format
+9,rtf,Text format
+10,doc,MS Office Word format
+11,docx,MS Office Word format 2
+12,xls,MS Office Excel format
+13,xlsx,MS Office Excel format 2
+14,ppt,MS Office Power point format
+15,pptx,MS Office Power point format 2
 

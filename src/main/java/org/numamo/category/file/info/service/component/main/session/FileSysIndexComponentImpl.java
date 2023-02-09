@@ -61,17 +61,35 @@ public class FileSysIndexComponentImpl implements FileSysIndexComponent {
 
     @Override
     @Transactional(propagation = NESTED, isolation = READ_COMMITTED)
-    public void finalizeRequestedIndex(long fileSysIndexId) {
+    public void finalizeRequestedIndex(final long fileSysIndexId) {
 
         LOGGER.debug("The file system index finalization by ID = {}", fileSysIndexId);
+        final FileSysIndexEntity fileSysIndex = findFileSysIndex(fileSysIndexId);
+
+        fileSysIndexEditor.archiveActualIndex(fileSysIndex);
+        LOGGER.debug("The file system index was finalized: {}", fileSysIndex);
+    }
+
+    @Override
+    @Transactional(propagation = NESTED, isolation = READ_COMMITTED)
+    public void removeRequestedIndex(final long fileSysIndexId) {
+
+        LOGGER.debug("The file system index removing by ID = {}", fileSysIndexId);
+        final FileSysIndexEntity fileSysIndex = findFileSysIndex(fileSysIndexId);
+
+        fileSysIndexEditor.removeRequestedIndex(fileSysIndex);
+        LOGGER.debug("The file system index was removed: {}", fileSysIndex);
+    }
+
+    private FileSysIndexEntity findFileSysIndex(final long fileSysIndexId) {
 
         final FileSysIndexEntity fileSysIndex = fileSysIndexRepository
                 .findById(fileSysIndexId)
                 .orElseThrow(() ->
                         new IllegalArgumentException("The file sys index cannot be found by ID = " + fileSysIndexId)
                 );
-
-        fileSysIndexEditor.archiveActualIndex(fileSysIndex);
-        LOGGER.debug("The file system index was finalized: {}", fileSysIndex);
+        LOGGER.trace("Requested file sys index = {}", fileSysIndex);
+        return fileSysIndex;
     }
+
 }
