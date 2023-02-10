@@ -1,0 +1,51 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="Nazimov Aleksey I." id="add-user-info">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_info"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_info" remarks="The table of an additional user info">
+
+            <column name="id" type="NUMBER" remarks="The numerical primary key">
+                <constraints primaryKey="true" primaryKeyName="user_info_id_pk"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of creating"/>
+            <column name="updated_at" type="TIMESTAMP" valueComputed="CURRENT_TIMESTAMP"
+                    remarks="The time of updating"/>
+
+            <column name="first_name" type="VARCHAR(128)" remarks="The user first name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(128)" remarks="The user last name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(128)" remarks="The user email">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(2048)" remarks="The user password">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="enabled" type="BOOLEAN" remarks="The user switcher">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_expired" type="BOOLEAN" remarks="The user token switcher">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_record_id" type="NUMBER" remarks="The user record foreign key ID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
