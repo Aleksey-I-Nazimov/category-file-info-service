@@ -1,0 +1,231 @@
+{
+  "info": {
+    "_postman_id": "998ec768-d6fe-473d-98bf-9b4198f82fe5",
+    "name": "category-file-info-service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "/api/get/categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/get/categories",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "get",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/make/updates",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/make/updates",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "make",
+            "updates"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/find/root-folders",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"parentIndexNumber\": \"3\",\r\n    \"categoryCode\":\"1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/find/root-folders",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "find",
+            "root-folders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/find/folders",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"parentKey\": \"-5725119097718714140\",\r\n    \"parentIndexNumber\": 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/find/folders",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "find",
+            "folders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/find/files",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"parentKey\": \"-5085900611186455539\",\r\n    \"parentIndexNumber\": \"3\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/find/files",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "find",
+            "files"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/get/resource",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "alex19121988",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "Alex",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3080/books/Университетская литература/СПРАВОЧНИКИ_по_МФ/Abramovitz.pdf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3080",
+          "path": [
+            "books",
+            "Университетская литература",
+            "СПРАВОЧНИКИ_по_МФ",
+            "Abramovitz.pdf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "login",
+              "value": "admin",
+              "type": "text"
+            },
+            {
+              "key": "key",
+              "value": "admin",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/logout",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/logout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
