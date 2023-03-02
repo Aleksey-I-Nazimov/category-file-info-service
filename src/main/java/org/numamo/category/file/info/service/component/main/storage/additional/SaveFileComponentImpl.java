@@ -97,7 +97,7 @@ public class SaveFileComponentImpl implements SaveFileComponent {
                 mainCategory,
                 parentFolder,
                 fileExtensionRepository.findByCode(fileObjectDmo.getExtension().toLowerCase()).orElseThrow(
-                        () -> new IllegalArgumentException("File extension is not found by " + fileObjectDmo.getExtension())),
+                        () -> new IllegalArgumentException("File extension is not found by: " + fileObjectDmo.getExtension() + " " + fileObjectDmo.getFullPath())),
                 fileSysIndex);
         fileEntity.setFileAccessList(fileAccessComponent.makeAccessEntity(fileObjectDmo, fileEntity));
         LOGGER.trace("The following file was constructed: {}", fileEntity);

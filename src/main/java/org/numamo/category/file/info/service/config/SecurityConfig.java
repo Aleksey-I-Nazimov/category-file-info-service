@@ -29,6 +29,15 @@ import static org.numamo.category.file.info.service.component.api.main.user.mode
  * -> https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html
  * -> https://www.baeldung.com/spring-security-login
  *
+ *  Additional references:
+ *  https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/csrf.html
+ *  https://spring.io/guides/gs/securing-web/
+ *  https://github.com/spring-projects/spring-authorization-server
+ *  https://www.baeldung.com/spring-security-oauth-auth-server
+ *  https://stackoverflow.com/questions/70092103/spring-data-jpa-lock-annotation-with-transactional
+ *  https://www.postgresql.org/docs/current/explicit-locking.html
+ *
+ *
  * @author Nazimov Aleksey I.
  */
 @Configuration
@@ -77,6 +86,13 @@ public class SecurityConfig {
                 .hasAuthority(USER_AUTHORITY)
                 .anyRequest()
                 .authenticated()
+                .and()
+                .sessionManagement()
+                .maximumSessions(2)
+                .maxSessionsPreventsLogin(true)
+                .and()
+                .sessionFixation()
+                .newSession()
                 .and()
                 .csrf()
                 .disable()

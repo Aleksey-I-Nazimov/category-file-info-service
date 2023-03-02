@@ -4,14 +4,15 @@
 3,jpg,Journal photo expert group
 4,mp3,Common music format
 5,mp4,New video file format
-6,djv,Old compact scanner format
-7,djvu,Old compact scanner format
-8,pdf,Old scanner format
-9,rtf,Text format
-10,doc,MS Office Word format
-11,docx,MS Office Word format 2
-12,xls,MS Office Excel format
-13,xlsx,MS Office Excel format 2
-14,ppt,MS Office Power point format
-15,pptx,MS Office Power point format 2
+6,mpg,Compact video file format
+7,djv,Old compact scanner format
+8,djvu,Old compact scanner format
+9,pdf,Old scanner format
+10,rtf,Text format
+11,doc,MS Office Word format
+12,docx,MS Office Word format 2
+13,xls,MS Office Excel format
+14,xlsx,MS Office Excel format 2
+15,ppt,MS Office Power point format
+16,pptx,MS Office Power point format 2
 
