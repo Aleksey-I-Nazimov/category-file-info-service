@@ -30,8 +30,19 @@ spring:
 logging:
   level:
     root: DEBUG
+    org.numamo: DEBUG
     org.springframework.web: DEBUG
     org.springframework.security: DEBUG
+  file:
+    name: log/cfis.log
+  pattern:
+    file: '%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread %-5level %logger{75}] %msg%n'
+    console: '%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread %-5level %logger{75}] %msg%n'
+  logback:
+    rollingpolicy:
+      file-name-pattern: 'log/archived/cfis.%d{yyyy-MM-dd}.%i.log'
+      max-file-size: 50MB
+      max-history: 60
 
 app:
   category-file-root: C:/Users/Alex/Desktop/CFIS_TEST
