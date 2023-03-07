@@ -1,6 +1,7 @@
 # httpOnly: if true then browser script won't be able to access the cookie
 # secure: if true then the cookie will be sent only over HTTPS connection
 server:
+  port: ${SERVER_PORT:8080}
   servlet:
     session:
       timeout: 15m
@@ -13,26 +14,26 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-    #database-platform: org.hibernate.dialect.H2Dialect
+    # database-platform: org.hibernate.dialect.H2Dialect
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   # see: https://jdbc.postgresql.org/documentation/ssl/
-  datasource.url: jdbc:postgresql://localhost:5432/cfis?ApplicationName=cfis&ssl=true&sslmode=disable&client_encoding=UTF8
+  datasource.url: ${PG_URL:jdbc:postgresql://localhost:5432}/${PG_DB:cfis}?ApplicationName=cfis&ssl=true&sslmode=disable&client_encoding=UTF8
   datasource.driver-class-name: org.postgresql.Driver
-  datasource.username: cfis_user
-  datasource.password: cfis_password
+  datasource.username: ${PG_USR:cfis_user}
+  datasource.password: ${PG_PWD:cfis_password}
 
   liquibase:
-    enabled: true
-    drop-first: true
+    enabled: ${LB_EBD:true}
+    drop-first: ${LB_DF:true}
     change-log: classpath:category_file_info_service_changelog.xml
-    default-schema: public
+    default-schema: ${PG_SHM:public}
 
 logging:
   level:
-    root: DEBUG
-    org.numamo: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
+    root: ${LOGGING_LEVEL:DEBUG}
+    org.numamo: ${LOGGING_LEVEL:DEBUG}
+    org.springframework: ${LOGGING_LEVEL:DEBUG}
+    org.hibernate: ${LOGGING_LEVEL:DEBUG}
   file:
     name: log/cfis.log
   pattern:
@@ -41,11 +42,11 @@ logging:
   logback:
     rollingpolicy:
       file-name-pattern: 'log/archived/cfis.%d{yyyy-MM-dd}.%i.log'
-      max-file-size: 50MB
-      max-history: 60
+      max-file-size: 10MB
+      max-history: 100
 
 app:
-  category-file-root: C:/Users/Alex/Desktop/CFIS_TEST
-  category-file-name: .cfis-categories
-  user-access-file-name: .cfis-user-access-file
-  user-session-expiration-timeout: 600000
+  category-file-root: ${CFIS_CFR:C:/Users/Alex/Desktop/CFIS_TEST}
+  category-file-name: ${CFIS_CFN:.cfis-categories}
+  user-access-file-name: ${CFIS_UAFN:.cfis-user-access-file}
+  user-session-expiration-timeout: ${CFIS_USET:600000}
