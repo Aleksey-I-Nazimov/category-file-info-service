@@ -22,7 +22,7 @@ public class AppConfigImpl implements AppConfig {
     private long userSessionExpirationTimeout;
 
     private String defaultUserLogin;
-    private String defaultUserPwd;
+    private String defaultUserPassword;
 
 
     @PostConstruct
@@ -70,7 +70,7 @@ public class AppConfigImpl implements AppConfig {
         this.userSessionExpirationTimeout = userSessionExpirationTimeout;
     }
 
-    @Value("${app.def-user-login:admin}")
+    @Value("${app.default-user-login:admin}")
     public void setDefaultUserLogin(String defaultUserLogin) {
         this.defaultUserLogin = defaultUserLogin;
     }
@@ -80,14 +80,14 @@ public class AppConfigImpl implements AppConfig {
         return defaultUserLogin;
     }
 
-    @Value("${app.def-user-password:admin}")
-    public void setDefaultUserPwd(String defaultUserPwd) {
-        this.defaultUserPwd = defaultUserPwd;
+    @Value("${app.default-user-password:admin}")
+    public void setDefaultUserPassword(String defaultUserPassword) {
+        this.defaultUserPassword = defaultUserPassword;
     }
 
     @Override
-    public String getDefaultUserPwd() {
-        return defaultUserPwd;
+    public String getDefaultUserPassword() {
+        return defaultUserPassword;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class AppConfigImpl implements AppConfig {
                 ", userAccessFileName='" + userAccessFileName + '\'' +
                 ", userSessionExpirationTimeout=" + userSessionExpirationTimeout +
                 ", defaultUserLogin='" + defaultUserLogin + '\'' +
-                ", defaultUserPwd='" + defaultUserPwd + '\'' +
+                ", defaultUserPassword='" + defaultUserPassword + '\'' +
                 '}';
     }
 }

@@ -72,7 +72,7 @@ public class TechUserInfoComponentImpl implements TechUserInfoComponent {
         userDetails.setCode("TECH-USER");
         userDetails.setUserName("Nazimov-Aleksey-Igorevich");
         userDetails.setLogin(appConfig.getDefaultUserLogin());
-        userDetails.setPassword(passwordEncoder.encode(appConfig.getDefaultUserPwd()));
+        userDetails.setPassword(passwordEncoder.encode(appConfig.getDefaultUserPassword()));
         userDetails.setAuthorities(singletonList(new GrantedAuthorityDmo(USER_AUTHORITY)));
 
         userDetails.setEnabled(true);

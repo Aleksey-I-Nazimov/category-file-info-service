@@ -11,12 +11,33 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/get/categories",
+          "raw": "http://{{address}}:{{port}}/api/get/categories",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
+          "path": [
+            "api",
+            "get",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/actuator",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{address}}:{{port}}/api/get/categories",
+          "protocol": "http",
+          "host": [
+            "{{address}}"
+          ],
+          "port": "{{port}}",
           "path": [
             "api",
             "get",
@@ -32,12 +53,12 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/make/updates",
+          "raw": "http://{{address}}:{{port}}/api/make/updates",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
           "path": [
             "api",
             "make",
@@ -62,12 +83,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/api/find/root-folders",
+          "raw": "http://{{address}}:{{port}}/api/find/root-folders",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
           "path": [
             "api",
             "find",
@@ -92,12 +113,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/api/find/folders",
+          "raw": "http://{{address}}:{{port}}/api/find/folders",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
           "path": [
             "api",
             "find",
@@ -122,12 +143,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/api/find/files",
+          "raw": "http://{{address}}:{{port}}/api/find/files",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
           "path": [
             "api",
             "find",
@@ -145,7 +166,7 @@
           "basic": [
             {
               "key": "password",
-              "value": "alex19121988",
+              "value": "19121988Alex",
               "type": "string"
             },
             {
@@ -158,12 +179,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3080/books/Университетская литература/СПРАВОЧНИКИ_по_МФ/Abramovitz.pdf",
+          "raw": "http://{{address}}:{{port2}}/books/Университетская литература/СПРАВОЧНИКИ_по_МФ/Abramovitz.pdf",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "3080",
+          "port": "{{port2}}",
           "path": [
             "books",
             "Университетская литература",
@@ -195,12 +216,12 @@
           ]
         },
         "url": {
-          "raw": "http://localhost:8080/login",
+          "raw": "http://{{address}}:{{port}}/login",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
           "path": [
             "login"
           ]
@@ -214,12 +235,12 @@
         "method": "POST",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/logout",
+          "raw": "http://{{address}}:{{port}}/logout",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{address}}"
           ],
-          "port": "8080",
+          "port": "{{port}}",
           "path": [
             "logout"
           ]

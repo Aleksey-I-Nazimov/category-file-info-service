@@ -13,6 +13,6 @@ public interface AppConfig {
 
     String getDefaultUserLogin();
 
-    String getDefaultUserPwd();
+    String getDefaultUserPassword();
 
 }
