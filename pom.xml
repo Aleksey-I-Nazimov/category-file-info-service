@@ -12,7 +12,7 @@
 
     <groupId>org.numamo</groupId>
     <artifactId>category-file-info-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>category-file-info-service</name>
     <description>The service of storing file category info</description>
