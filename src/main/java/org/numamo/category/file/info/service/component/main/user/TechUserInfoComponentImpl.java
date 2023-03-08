@@ -5,6 +5,7 @@ import org.numamo.category.file.info.service.component.api.main.user.UserCompone
 import org.numamo.category.file.info.service.component.api.main.user.UserInfoComponent;
 import org.numamo.category.file.info.service.component.api.main.user.model.GrantedAuthorityDmo;
 import org.numamo.category.file.info.service.component.api.main.user.model.UserDetailsDmo;
+import org.numamo.category.file.info.service.config.api.AppConfig;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,23 +24,24 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Component
 public class TechUserInfoComponentImpl implements TechUserInfoComponent {
 
-    private static final String DEFAULT_ADMIN_LOGIN = "admin";
-
     private static final Logger LOGGER = getLogger(TechUserInfoComponentImpl.class);
 
     private final UserComponent userComponent;
     private final UserInfoComponent userInfoComponent;
     private final PasswordEncoder passwordEncoder;
+    private final AppConfig appConfig;
 
     @Autowired
     public TechUserInfoComponentImpl(
             UserComponent userComponent,
             UserInfoComponent userInfoComponent,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            AppConfig appConfig
     ) {
         this.userComponent = userComponent;
         this.userInfoComponent = userInfoComponent;
         this.passwordEncoder = passwordEncoder;
+        this.appConfig = appConfig;
     }
 
     @Override
@@ -50,11 +52,14 @@ public class TechUserInfoComponentImpl implements TechUserInfoComponent {
 
 
     private void makeNewTechUser() {
-        final Optional<UserDetailsDmo> userDetailsOpt = userInfoComponent.loadUserByLoginOpt(DEFAULT_ADMIN_LOGIN);
+        final Optional<UserDetailsDmo> userDetailsOpt = userInfoComponent
+                .loadUserByLoginOpt(appConfig.getDefaultUserLogin());
+
         if (!userDetailsOpt.isPresent()) {
             final UserDetailsDmo userDetails = makeTechUserDmo();
             LOGGER.debug("Making the new tech user {}", userDetails);
             userComponent.insertUserRecord(userDetails);
+
         } else {
             LOGGER.debug("The tech user has already been created: {}", userDetailsOpt.get());
         }
@@ -63,15 +68,17 @@ public class TechUserInfoComponentImpl implements TechUserInfoComponent {
     private UserDetailsDmo makeTechUserDmo() {
 
         final UserDetailsDmo userDetails = new UserDetailsDmo();
-        userDetails.setAuthorities(singletonList(new GrantedAuthorityDmo(USER_AUTHORITY)));
+
         userDetails.setCode("TECH-USER");
+        userDetails.setUserName("Nazimov-Aleksey-Igorevich");
+        userDetails.setLogin(appConfig.getDefaultUserLogin());
+        userDetails.setPassword(passwordEncoder.encode(appConfig.getDefaultUserPassword()));
+        userDetails.setAuthorities(singletonList(new GrantedAuthorityDmo(USER_AUTHORITY)));
+
         userDetails.setEnabled(true);
-        userDetails.setLogin(DEFAULT_ADMIN_LOGIN);
-        userDetails.setPassword(passwordEncoder.encode("admin"));
         userDetails.setAccountExpired(false);
         userDetails.setAccountLocked(false);
         userDetails.setCredentialsExpired(false);
-        userDetails.setUserName("Nazimov-Aleksey-Igorevich");
 
         return userDetails;
     }

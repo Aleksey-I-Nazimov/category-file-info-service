@@ -8,13 +8,15 @@ server:
       cookie:
         http-only: true
         secure: false
+      security:
+        cors-origin: ${SERVER_CORS:http://localhost:3000}
+      max-session-number: 5
 
 spring:
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: none
-    # database-platform: org.hibernate.dialect.H2Dialect
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   # see: https://jdbc.postgresql.org/documentation/ssl/
   datasource.url: ${PG_URL:jdbc:postgresql://localhost:5432}/${PG_DB:cfis}?ApplicationName=cfis&ssl=true&sslmode=disable&client_encoding=UTF8
@@ -50,3 +52,5 @@ app:
   category-file-name: ${CFIS_CFN:.cfis-categories}
   user-access-file-name: ${CFIS_UAFN:.cfis-user-access-file}
   user-session-expiration-timeout: ${CFIS_USET:600000}
+  default-user-login: ${CFIS_DEF_USR:admin}
+  default-user-password: ${CFIS_DEF_PWD:qawsed}
