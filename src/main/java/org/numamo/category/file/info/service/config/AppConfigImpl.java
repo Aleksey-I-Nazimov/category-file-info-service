@@ -14,13 +14,16 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Configuration
 public class AppConfigImpl implements AppConfig {
 
-
     private static final Logger LOGGER = getLogger(AppConfigImpl.class);
 
     private String categoryFileRoot;
     private String categoryFileName;
     private String userAccessFileName;
     private long userSessionExpirationTimeout;
+
+    private String defaultUserLogin;
+    private String defaultUserPwd;
+
 
     @PostConstruct
     void postConstruct() {
@@ -67,6 +70,26 @@ public class AppConfigImpl implements AppConfig {
         this.userSessionExpirationTimeout = userSessionExpirationTimeout;
     }
 
+    @Value("${app.def-user-login:admin}")
+    public void setDefaultUserLogin(String defaultUserLogin) {
+        this.defaultUserLogin = defaultUserLogin;
+    }
+
+    @Override
+    public String getDefaultUserLogin() {
+        return defaultUserLogin;
+    }
+
+    @Value("${app.def-user-password:admin}")
+    public void setDefaultUserPwd(String defaultUserPwd) {
+        this.defaultUserPwd = defaultUserPwd;
+    }
+
+    @Override
+    public String getDefaultUserPwd() {
+        return defaultUserPwd;
+    }
+
     @Override
     public String toString() {
         return "AppConfigImpl{" +
@@ -74,6 +97,8 @@ public class AppConfigImpl implements AppConfig {
                 ", categoryFileName='" + categoryFileName + '\'' +
                 ", userAccessFileName='" + userAccessFileName + '\'' +
                 ", userSessionExpirationTimeout=" + userSessionExpirationTimeout +
+                ", defaultUserLogin='" + defaultUserLogin + '\'' +
+                ", defaultUserPwd='" + defaultUserPwd + '\'' +
                 '}';
     }
 }

@@ -11,4 +11,8 @@ public interface AppConfig {
 
     long getUserSessionExpirationTimeout();
 
+    String getDefaultUserLogin();
+
+    String getDefaultUserPwd();
+
 }
